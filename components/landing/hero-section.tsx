@@ -1,0 +1,89 @@
+"use client";
+
+// components/landing/hero-section.tsx
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/language-context";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", damping: 20, stiffness: 100 }
+  },
+};
+
+export default function HeroSection() {
+  const { t } = useLanguage();
+
+  return (
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.12),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(99,102,241,0.12),_transparent_35%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.05),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(99,102,241,0.05),_transparent_35%)]">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="mx-auto flex max-w-4xl flex-col items-center text-center px-6 py-20 lg:px-8 lg:py-32"
+      >
+        <motion.div variants={itemVariants} className="mb-5 inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 dark:border-blue-900 dark:bg-blue-900/30 dark:text-blue-400">
+          {t.hero.badge}
+        </motion.div>
+
+        <motion.h1 variants={itemVariants} className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-5xl lg:text-6xl">
+          {t.hero.title}{" "}
+          <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
+            {t.hero.titleHighlight}
+          </span>
+        </motion.h1>
+
+        <motion.p variants={itemVariants} className="mt-6 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-400">
+          {t.hero.description}
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center items-center gap-4">
+          <Link
+            href="/tes"
+            className="group flex items-center gap-2 rounded-md bg-gradient-to-r from-blue-600 to-indigo-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-100 dark:shadow-none transition hover:opacity-95"
+          >
+            {t.hero.startBtn}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="#cara-kerja"
+            className="rounded-md border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+          >
+            {t.hero.exploreBtn}
+          </Link>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mt-12 flex flex-col items-center gap-4">
+          <div className="flex -space-x-3">
+            {["A", "R", "D", "S"].map((item) => (
+              <div
+                key={item}
+                className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-white dark:border-slate-950 bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-bold text-white shadow"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            <span className="font-bold text-blue-600 dark:text-blue-400">50.000+</span> {t.hero.activeUsers}
+          </p>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
