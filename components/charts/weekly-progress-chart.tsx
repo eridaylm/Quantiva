@@ -20,7 +20,7 @@ export default function WeeklyProgressChart() {
     
     // Use exact font from body
     const computedFont = window.getComputedStyle(document.body).fontFamily;
-    root.container.set("fontFamily", computedFont);
+    (root.container as any).set("fontFamily", computedFont);
 
     // Remove watermark
     if (root._logo) {
