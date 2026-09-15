@@ -35,17 +35,17 @@ export default function StatsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="rounded-[28px] bg-gradient-to-r from-blue-600 to-indigo-500 px-8 py-8 text-white shadow-lg shadow-blue-100 dark:shadow-none"
+          className="rounded-[28px] bg-gradient-to-r from-blue-600 to-indigo-500 px-5 py-6 text-white shadow-lg shadow-blue-100 dark:shadow-none sm:px-8 sm:py-8"
         >
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:gap-8 xl:grid-cols-4">
             {t.stats.items.map((stat) => (
-              <motion.div variants={itemVariants} key={stat.label} className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-2xl">
+              <motion.div variants={itemVariants} key={stat.label} className="flex items-center gap-3 sm:gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl sm:h-14 sm:w-14 sm:text-2xl">
                   ✦
                 </div>
-                <div>
-                  <p className="text-3xl font-extrabold">{stat.value}</p>
-                  <p className="text-sm text-blue-100">{stat.label}</p>
+                <div className="min-w-0">
+                  <p className="text-2xl font-extrabold sm:text-3xl">{stat.value}</p>
+                  <p className="text-xs text-blue-100 sm:text-sm">{stat.label}</p>
                 </div>
               </motion.div>
             ))}

@@ -61,7 +61,7 @@ export default function PopularTests() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-5 md:grid-cols-2 xl:grid-cols-5"
+          className="grid gap-4 grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-5"
         >
           {tests.map((test) => (
             <motion.div

@@ -12,7 +12,7 @@ export default function Footer() {
       id="tentang"
       className="border-t border-slate-200 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-200 transition-colors"
     >
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 font-bold text-white shadow-sm">

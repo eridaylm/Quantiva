@@ -1,6 +1,9 @@
+"use client";
+
 // components/dashboard/dashboard-sidebar.tsx
 import Link from "next/link";
-import { Home, ClipboardList, BarChart2, PieChart, Trophy, BookOpen, User, Settings, Crown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Home, ClipboardList, PieChart, Trophy, BookOpen, Settings, Crown } from "lucide-react";
 
 const menuItems = [
   { label: "Beranda", href: "/dashboard", icon: Home },
@@ -11,52 +14,92 @@ const menuItems = [
   { label: "Pengaturan", href: "/pengaturan", icon: Settings },
 ];
 
-export default function DashboardSidebar() {
-  return (
-    <aside className="hidden w-[260px] flex-col border-r border-slate-200 bg-white p-5 lg:flex">
-      <Link href="/" className="mb-8 flex items-center gap-3 px-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 font-bold text-white shadow-sm">
-          Q
-        </div>
-        <div>
-          <p className="text-xl font-bold text-slate-900 tracking-tight">Quantiva</p>
-        </div>
-      </Link>
+// Items for mobile bottom nav (max 5)
+const bottomNavItems = [
+  { label: "Beranda", href: "/dashboard", icon: Home },
+  { label: "Tes", href: "/tes", icon: ClipboardList },
+  { label: "Analisis", href: "/analisis", icon: PieChart },
+  { label: "Peringkat", href: "/peringkat", icon: Trophy },
+  { label: "Lainnya", href: "/pengaturan", icon: Settings },
+];
 
-      <nav className="space-y-1">
-        {menuItems.map((item, index) => {
+export default function DashboardSidebar() {
+  const pathname = usePathname();
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden w-[260px] flex-col border-r border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 lg:flex">
+        <Link href="/" className="mb-8 flex items-center gap-3 px-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 font-bold text-white shadow-sm">
+            Q
+          </div>
+          <div>
+            <p className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Quantiva</p>
+          </div>
+        </Link>
+
+        <nav className="space-y-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-indigo-50/80 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+                }`}
+              >
+                <Icon className={`h-5 w-5 ${isActive ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-slate-500"}`} />
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-auto rounded-3xl bg-indigo-50/50 p-5 text-center border border-indigo-100/50 relative overflow-hidden dark:bg-indigo-500/5 dark:border-indigo-500/10">
+          <div className="absolute top-0 right-0 -mr-4 -mt-4 h-16 w-16 rounded-full bg-indigo-100 blur-2xl dark:bg-indigo-500/10"></div>
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm mb-4 border border-indigo-50 dark:bg-slate-800 dark:border-slate-700">
+            <Crown className="h-7 w-7 text-yellow-500" />
+          </div>
+          <p className="text-sm font-bold text-slate-900 dark:text-white">Premium Member</p>
+          <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            Akses semua fitur premium dan materi eksklusif.
+          </p>
+          <button className="mt-4 w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-90">
+            Upgrade Sekarang
+          </button>
+        </div>
+      </aside>
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-slate-200 bg-white/95 backdrop-blur-md px-2 py-2 dark:border-slate-800 dark:bg-slate-950/95 lg:hidden safe-bottom">
+        {bottomNavItems.map((item) => {
           const Icon = item.icon;
-          const isActive = index === 0;
+          const isActive = pathname === item.href;
           return (
             <Link
               key={item.label}
               href={item.href}
-              className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+              className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 text-[10px] font-medium transition-colors min-w-[56px] ${
                 isActive
-                  ? "bg-indigo-50/80 text-indigo-700"
-                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
               }`}
             >
-              <Icon className={`h-5 w-5 ${isActive ? "text-indigo-600" : "text-slate-400"}`} />
+              <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition ${
+                isActive ? "bg-blue-50 dark:bg-blue-500/10" : ""
+              }`}>
+                <Icon className="h-[18px] w-[18px]" />
+              </div>
               {item.label}
             </Link>
-          )
+          );
         })}
       </nav>
-
-      <div className="mt-auto rounded-3xl bg-indigo-50/50 p-5 text-center border border-indigo-100/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mr-4 -mt-4 h-16 w-16 rounded-full bg-indigo-100 blur-2xl"></div>
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm mb-4 border border-indigo-50">
-          <Crown className="h-7 w-7 text-yellow-500" />
-        </div>
-        <p className="text-sm font-bold text-slate-900">Premium Member</p>
-        <p className="mt-2 text-xs leading-relaxed text-slate-500">
-          Akses semua fitur premium dan materi eksklusif.
-        </p>
-        <button className="mt-4 w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-90">
-          Upgrade Sekarang
-        </button>
-      </div>
-    </aside>
+    </>
   );
 }
