@@ -20,7 +20,7 @@ function MiniChart({ data, type }: { data: number[], type: "score" | "rank" }) {
     
     // Get exact font family from the document to ensure Next.js font is picked up
     const computedFont = window.getComputedStyle(document.body).fontFamily;
-    root.container.set("fontFamily", computedFont);
+    (root.container as any).set("fontFamily", computedFont);
     
     // Remove watermark
     if (root._logo) {

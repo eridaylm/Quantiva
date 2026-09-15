@@ -63,8 +63,16 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-slate-200 dark:border-slate-900 py-5 text-center text-sm text-slate-500">
-        {t.footer.copyright}
+      <div className="border-t border-slate-200 dark:border-slate-900 py-5 px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 max-w-7xl mx-auto">
+        <div>{t.footer.copyright}</div>
+        <div className="mt-2 sm:mt-0 flex items-center gap-4">
+          <Link
+            href="/admin/login"
+            className="hover:text-slate-800 dark:hover:text-slate-200 transition flex items-center gap-1.5 opacity-70 hover:opacity-100"
+          >
+            <span>Portal Admin</span>
+          </Link>
+        </div>
       </div>
     </footer>
   );

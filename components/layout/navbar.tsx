@@ -1,5 +1,6 @@
-"use client";
+'use client';
 
+<<<<<<< HEAD
 // components/layout/navbar.tsx
 import Link from "next/link";
 import { useState } from "react";
@@ -161,3 +162,6 @@ export default function Navbar() {
     </header>
   );
 }
+=======
+export { default } from '@/components/Navbar';
+>>>>>>> 9d170d7878bde3fbff4c1e39b911b8f641589ea9

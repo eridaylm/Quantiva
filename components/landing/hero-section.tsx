@@ -21,7 +21,7 @@ const itemVariants = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { type: "spring", damping: 20, stiffness: 100 }
+    transition: { type: "spring" as const, damping: 20, stiffness: 100 }
   },
 };
 
