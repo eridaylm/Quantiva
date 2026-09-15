@@ -1,0 +1,19 @@
+=== AKUN DUMMY TESTING REMATH ===
+
+[ADMIN]
+1. Nama : I Komang Arjuna Tudung Negara
+   Email: arjuna@remath.id
+   Pass : admin123
+
+2. Nama : Eridayalma Zahra Yohar
+   Email: erida@remath.id
+   Pass : admin123
+
+[USER]
+1. Nama : Calizha
+   Email: calizha@remath.id
+   Pass : user123
+
+2. Nama : Michelle
+   Email: michelle@remath.id
+   Pass : user123

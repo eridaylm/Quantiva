@@ -3,24 +3,24 @@ export type SubTopic = 'Aljabar' | 'Geometri' | 'Kalkulus' | 'Statistika' | 'Ari
 export type Level = 'SMA' | 'SMP' | 'SD';
 
 export type MasteryStatus = 
-  | 'SMA_MASTERED'      // Passed SMA block (>= 2/3) -> Green
-  | 'SMP_FOUNDATIONAL'  // Failed SMA, Passed SMP -> Yellow
-  | 'SD_FOUNDATIONAL'   // Failed SMA & SMP, Passed SD -> Orange
-  | 'BASIC_REMEDIAL';   // Failed SD -> Red
+  | 'SMA_MASTERED'
+  | 'SMP_FOUNDATIONAL'
+  | 'SD_FOUNDATIONAL'
+  | 'BASIC_REMEDIAL';
 
 export interface Question {
   id: string;
   subtopic: SubTopic;
   level: Level;
   question: string;
-  options: string[];       // 4 options [A, B, C, D]
-  correctAnswer: number;   // 0, 1, 2, or 3
-  explanation: string;     // Concept explanation
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
   hint?: string;
-  conceptTag?: string;     // e.g. "Persamaan Kuadrat", "Pecahan Campuran"
+  conceptTag?: string;
 }
 
-export type SelectedAnswer = number | 'UNKNOWN'; // number index or 'UNKNOWN' for "Saya Belum Mempelajari Ini / Tidak Tahu"
+export type SelectedAnswer = number | 'UNKNOWN';
 
 export interface BlockSubmission {
   subtopic: SubTopic;
@@ -31,9 +31,9 @@ export interface BlockSubmission {
     isCorrect: boolean;
     isHonesty: boolean;
   }[];
-  score: number; // 0, 1, 2, 3
-  passed: boolean; // score >= 2
-  bypassed: boolean; // user pressed "Menyerah / Lompati Level Ini"
+  score: number;
+  passed: boolean;
+  bypassed: boolean;
   timeSeconds: number;
 }
 
@@ -42,8 +42,8 @@ export interface SubTopicResult {
   status: MasteryStatus;
   statusLabel: string;
   levelReached: Level | 'Remedial';
-  score: number; // questions correct in the determining block
-  totalQuestions: number; // usually 3 per block
+  score: number;
+  totalQuestions: number;
   accuracyPercent: number;
   blocksAttempted: BlockSubmission[];
   honestyCount: number;
@@ -94,14 +94,21 @@ export interface LeaderboardEntry {
   masteryLevel: MasteryStatus;
   masteryLabel: string;
   timeSeconds: number;
-  formattedTime: string; // e.g. "01m 45s"
+  formattedTime: string;
   date: string;
   accuracy: number;
 }
 
-export interface AdminUser {
+export interface AppUser {
+  id?: string;
   email: string;
   name: string;
-  role: 'admin';
-  token: string;
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  avatarUrl?: string;
+  role: 'admin' | 'user';
+  token?: string;
+  pass?: string;
+  lastAccess?: string;
 }

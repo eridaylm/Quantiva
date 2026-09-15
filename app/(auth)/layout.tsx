@@ -34,9 +34,9 @@ export default function AuthLayout({
         {/* Logo */}
         <Link href="/" className="relative z-10 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm text-white font-bold text-lg shadow-sm border border-white/10">
-            Q
+            
           </div>
-          <span className="text-2xl font-bold text-white">Quantiva</span>
+          <span className="text-2xl font-bold text-white">ReMath</span>
         </Link>
 
         {/* Center content */}
@@ -68,7 +68,7 @@ export default function AuthLayout({
 
         {/* Bottom */}
         <p className="relative z-10 text-xs text-blue-200/70">
-          © 2026 Quantiva. All rights reserved.
+          © 2026 ReMath. All rights reserved.
         </p>
       </div>
 
@@ -79,9 +79,9 @@ export default function AuthLayout({
           {/* Mobile logo */}
           <Link href="/" className="flex items-center gap-2 lg:invisible">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 text-white font-bold text-sm shadow-sm">
-              Q
+              
             </div>
-            <span className="text-lg font-bold text-slate-900 dark:text-white">Quantiva</span>
+            <span className="text-lg font-bold text-slate-900 dark:text-white">ReMath</span>
           </Link>
 
           <div className="flex items-center gap-2 text-sm font-medium">

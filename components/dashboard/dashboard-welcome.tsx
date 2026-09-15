@@ -1,9 +1,17 @@
+"use client";
+
 // components/dashboard/dashboard-welcome.tsx
+import React from 'react';
+import { useAuth } from '@/context/AuthContext';
+
 export default function DashboardWelcome() {
+  const { user } = useAuth();
+  const firstName = user?.name?.split(' ')[0] || 'Pengguna';
+
   return (
     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 pb-2">
       <div className="max-w-xl">
-        <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight sm:text-[28px]">Halo, Alex! 👋</h2>
+        <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight sm:text-[28px]">Halo, {firstName}! 👋</h2>
         <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium sm:mt-2 sm:text-sm">
           Semangat untuk terus berkembang hari ini! Kamu sudah selangkah lebih dekat untuk menjadi versi terbaik dirimu.
         </p>

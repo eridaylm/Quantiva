@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import Navbar from '@/components/layout/navbar';
+import AdminHeader from '@/components/admin/admin-header';
 import Footer from '@/components/layout/footer';
 import AdminGuard from '@/components/layout/admin-guard';
+import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useTest } from '@/context/TestContext';
 import { SubTopic, Level, Question } from '@/types';
@@ -166,7 +167,7 @@ export default function AdminQuestionsPage() {
   return (
     <AdminGuard>
       <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950">
-        <Navbar />
+        <AdminHeader />
 
         <main className="flex-1 pb-16">
           {/* Admin Header Banner */}
@@ -203,6 +204,14 @@ export default function AdminQuestionsPage() {
                     <RotateCcw className="h-3.5 w-3.5 text-slate-500" />
                     <span>Reset Default (45 Soal)</span>
                   </button>
+
+                  <Link
+                    href="/admin/users"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition shadow-sm"
+                  >
+                    <Layers className="h-3.5 w-3.5 text-slate-500" />
+                    <span>Manajemen User</span>
+                  </Link>
 
                   <button
                     onClick={openAddModal}

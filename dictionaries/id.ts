@@ -13,14 +13,14 @@ export const id = {
     badge: "PLATFORM TES MATEMATIKA ONLINE",
     title: "Ukur Kecerdasan Matematikamu, Kenali",
     titleHighlight: "Potensimu.",
-    description: "Quantiva adalah platform cerdas untuk mengukur, menganalisis, dan mengembangkan kemampuan matematika secara akurat, interaktif, dan menyenangkan untuk semua kalangan.",
+    description: "ReMath adalah platform cerdas untuk mengukur, menganalisis, dan mengembangkan kemampuan matematika secara akurat, interaktif, dan menyenangkan untuk semua kalangan.",
     startBtn: "Mulai Tes Sekarang",
     exploreBtn: "Lihat Cara Kerja",
     activeUsers: "pengguna",
     testsTaken: "Tes Dikerjakan",
   },
   features: {
-    title: "Keunggulan Quantiva",
+    title: "Keunggulan ReMath",
     description: "Fitur-fitur terbaik yang dirancang untuk membantumu memahami potensi matematika.",
     cards: [
       {
@@ -94,12 +94,12 @@ export const id = {
   },
   testimonials: {
     title: "Apa Kata Mereka?",
-    description: "Cerita dari pengguna yang telah berkembang bersama Quantiva.",
+    description: "Cerita dari pengguna yang telah berkembang bersama ReMath.",
     reviews: [
       {
         name: "Rizky Pratama",
         role: "Mahasiswa",
-        quote: "Quantiva membantu saya mengetahui kelemahan saya di aljabar dan cara meningkatkannya. Hasilnya sangat detail.",
+        quote: "ReMath membantu saya mengetahui kelemahan saya di aljabar dan cara meningkatkannya. Hasilnya sangat detail.",
       },
       {
         name: "Salsa Anindita",
@@ -109,13 +109,13 @@ export const id = {
       {
         name: "Dimas Wahyu",
         role: "Guru",
-        quote: "Sebagai guru, Quantiva sangat membantu untuk analisis kemampuan siswa secara objektif dan cepat.",
+        quote: "Sebagai guru, ReMath sangat membantu untuk analisis kemampuan siswa secara objektif dan cepat.",
       },
     ]
   },
   cta: {
     title: "Siap untuk mengenal potensimu?",
-    description: "Mulai perjalananmu bersama Quantiva sekarang juga dan temukan kemampuan matematika terbaikmu.",
+    description: "Mulai perjalananmu bersama ReMath sekarang juga dan temukan kemampuan matematika terbaikmu.",
     startBtn: "Mulai Tes Sekarang",
   },
   footer: {
@@ -135,9 +135,9 @@ export const id = {
       contact: "Kontak",
     },
     newsletterTitle: "Dapatkan update terbaru",
-    newsletterDesc: "Berlangganan newsletter Quantiva.",
+    newsletterDesc: "Berlangganan newsletter ReMath.",
     placeholder: "Masukkan email kamu",
-    copyright: "© 2026 Quantiva. Semua hak dilindungi."
+    copyright: "© 2026 ReMath. Semua hak dilindungi."
   },
   auth: {
     brandTagline: "Platform cerdas untuk mengukur dan mengembangkan kecerdasan matematikamu.",

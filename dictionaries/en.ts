@@ -15,14 +15,14 @@ export const en: Dictionary = {
     badge: "ONLINE MATH TEST PLATFORM",
     title: "Measure Your Math Intelligence, Discover",
     titleHighlight: "Your Potential.",
-    description: "Quantiva is an intelligent platform to measure, analyze, and develop your mathematical skills accurately, interactively, and fun for everyone.",
+    description: "ReMath is an intelligent platform to measure, analyze, and develop your mathematical skills accurately, interactively, and fun for everyone.",
     startBtn: "Start Test Now",
     exploreBtn: "See How It Works",
     activeUsers: "users",
     testsTaken: "Tests Taken",
   },
   features: {
-    title: "Why Choose Quantiva",
+    title: "Why Choose ReMath",
     description: "The best features designed to help you understand your math potential.",
     cards: [
       {
@@ -96,12 +96,12 @@ export const en: Dictionary = {
   },
   testimonials: {
     title: "What They Say?",
-    description: "Stories from users who have grown with Quantiva.",
+    description: "Stories from users who have grown with ReMath.",
     reviews: [
       {
         name: "Rizky Pratama",
         role: "Student",
-        quote: "Quantiva helped me identify my weaknesses in algebra and how to improve. The results are very detailed.",
+        quote: "ReMath helped me identify my weaknesses in algebra and how to improve. The results are very detailed.",
       },
       {
         name: "Salsa Anindita",
@@ -111,13 +111,13 @@ export const en: Dictionary = {
       {
         name: "Dimas Wahyu",
         role: "Teacher",
-        quote: "As a teacher, Quantiva is very helpful for analyzing student abilities objectively and quickly.",
+        quote: "As a teacher, ReMath is very helpful for analyzing student abilities objectively and quickly.",
       },
     ]
   },
   cta: {
     title: "Ready to discover your potential?",
-    description: "Start your journey with Quantiva today and find your best mathematical abilities.",
+    description: "Start your journey with ReMath today and find your best mathematical abilities.",
     startBtn: "Start Test Now",
   },
   footer: {
@@ -137,9 +137,9 @@ export const en: Dictionary = {
       contact: "Contact",
     },
     newsletterTitle: "Get the latest updates",
-    newsletterDesc: "Subscribe to the Quantiva newsletter.",
+    newsletterDesc: "Subscribe to the ReMath newsletter.",
     placeholder: "Enter your email",
-    copyright: "© 2026 Quantiva. All rights reserved."
+    copyright: "© 2026 ReMath. All rights reserved."
   },
   auth: {
     brandTagline: "The smart platform to measure and develop your mathematical intelligence.",

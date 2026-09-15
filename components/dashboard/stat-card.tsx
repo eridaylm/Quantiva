@@ -1,141 +1,146 @@
 "use client";
 
 // components/dashboard/stat-card.tsx
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { DashboardStat } from "@/types/dashboard";
 import { BrainCircuit, Award, Info, Star } from "lucide-react";
-import * as am5 from "@amcharts/amcharts5";
-import * as am5xy from "@amcharts/amcharts5/xy";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 function MiniChart({ data, type }: { data: number[], type: "score" | "rank" }) {
   const chartRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
-    if (!chartRef.current) return;
+  useEffect(() => {
+    let isMounted = true;
+    let root: any;
 
-    const root = am5.Root.new(chartRef.current);
-    
-    // Get exact font family from the document to ensure Next.js font is picked up
-    const computedFont = window.getComputedStyle(document.body).fontFamily;
-    (root.container as any).set("fontFamily", computedFont);
-    
-    // Remove watermark
-    if (root._logo) {
-      root._logo.dispose();
-    }
-    
-    // Create chart
-    const chart = root.container.children.push(
-      am5xy.XYChart.new(root, {
-        panX: false,
-        panY: false,
-        wheelX: "none",
-        wheelY: "none",
-        paddingLeft: -10, // Stick to left edge
-        paddingRight: -10, // Stick to right edge
-        paddingTop: 10,
-        paddingBottom: 0, // Stick to bottom
-        layout: root.verticalLayout
-      })
-    );
+    const initChart = async () => {
+      const am5 = await import("@amcharts/amcharts5");
+      const am5xy = await import("@amcharts/amcharts5/xy");
 
-    // Create axes
-    const xAxis = chart.xAxes.push(
-      am5xy.CategoryAxis.new(root, {
-        categoryField: "day",
-        startLocation: 0.05,
-        endLocation: 0.95,
-        renderer: am5xy.AxisRendererX.new(root, {
-          minGridDistance: 10,
-          strokeOpacity: 0,
+      if (!isMounted || !chartRef.current) return;
+
+      root = am5.Root.new(chartRef.current);
+    
+      const computedFont = typeof window !== 'undefined' ? window.getComputedStyle(chartRef.current).fontFamily : "Inter, sans-serif";
+      (root.container as any).set("fontFamily", computedFont);
+    
+      // Remove watermark
+      if (root._logo) {
+        root._logo.dispose();
+      }
+    
+      // Create chart
+      const chart = root.container.children.push(
+        am5xy.XYChart.new(root, {
+          panX: false,
+          panY: false,
+          wheelX: "none",
+          wheelY: "none",
+          paddingLeft: -10, // Stick to left edge
+          paddingRight: -10, // Stick to right edge
+          paddingTop: 10,
+          paddingBottom: 0, // Stick to bottom
+          layout: root.verticalLayout
         })
-      })
-    );
-    
-    xAxis.get("renderer").grid.template.setAll({ forceHidden: true });
-    xAxis.get("renderer").labels.template.setAll({
-      fill: am5.color(0x64748b),
-      fontSize: 9,
-      fontWeight: "700",
-      fontFamily: window.getComputedStyle(document.body).fontFamily,
-      paddingTop: 5,
-      paddingBottom: 15,
-    });
+      );
 
-    const yAxis = chart.yAxes.push(
-      am5xy.ValueAxis.new(root, {
-        extraMin: 0.1,
-        extraMax: 0.1,
-        renderer: am5xy.AxisRendererY.new(root, {
-          strokeOpacity: 0
+      // Create axes
+      const xAxis = chart.xAxes.push(
+        am5xy.CategoryAxis.new(root, {
+          categoryField: "day",
+          startLocation: 0.05,
+          endLocation: 0.95,
+          renderer: am5xy.AxisRendererX.new(root, {
+            minGridDistance: 10,
+            strokeOpacity: 0,
+          })
         })
-      })
-    );
-    yAxis.get("renderer").grid.template.setAll({ forceHidden: true });
-    yAxis.get("renderer").labels.template.setAll({ forceHidden: true });
-
-    const isScore = type === "score";
-    const color = isScore ? am5.color(0x6366f1) : am5.color(0x10b981);
-
-    // Add series
-    const series = chart.series.push(
-      am5xy.SmoothedXLineSeries.new(root, {
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: "value",
-        categoryXField: "day",
-        stroke: color,
-        tension: 0.4
-      })
-    );
-
-    series.strokes.template.setAll({
-      strokeWidth: 2,
-    });
+      );
     
-    series.bullets.push(function () {
-      return am5.Bullet.new(root, {
-        sprite: am5.Circle.new(root, {
-          radius: 3.5,
-          fill: color,
-          stroke: am5.color(0xffffff),
-          strokeWidth: 1.5
-        })
+      xAxis.get("renderer").grid.template.setAll({ forceHidden: true });
+      xAxis.get("renderer").labels.template.setAll({
+        fill: am5.color(0x64748b),
+        fontSize: 9,
+        fontWeight: "700",
+        fontFamily: typeof window !== 'undefined' ? window.getComputedStyle(chartRef.current!).fontFamily : "Inter, sans-serif",
+        paddingTop: 5,
+        paddingBottom: 15,
       });
-    });
 
-    // Add gradient fill
-    series.fills.template.setAll({
-      fillOpacity: 1,
-      visible: true,
-      fill: color,
-    });
+      const yAxis = chart.yAxes.push(
+        am5xy.ValueAxis.new(root, {
+          extraMin: 0.1,
+          extraMax: 0.1,
+          renderer: am5xy.AxisRendererY.new(root, {
+            strokeOpacity: 0
+          })
+        })
+      );
+      yAxis.get("renderer").grid.template.setAll({ forceHidden: true });
+      yAxis.get("renderer").labels.template.setAll({ forceHidden: true });
+
+      const isScore = type === "score";
+      const color = isScore ? am5.color(0x6366f1) : am5.color(0x10b981);
+
+      // Add series
+      const series = chart.series.push(
+        am5xy.SmoothedXLineSeries.new(root, {
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          categoryXField: "day",
+          stroke: color,
+          tension: 0.4
+        })
+      );
+
+      series.strokes.template.setAll({
+        strokeWidth: 2,
+      });
     
-    series.fills.template.set("fillGradient", am5.LinearGradient.new(root, {
-      stops: [{
-        opacity: 0.15
-      }, {
-        opacity: 0
-      }],
-      rotation: 90
-    }));
+      series.bullets.push(function () {
+        return am5.Bullet.new(root, {
+          sprite: am5.Circle.new(root, {
+            radius: 3.5,
+            fill: color,
+            stroke: am5.color(0xffffff),
+            strokeWidth: 1.5
+          })
+        });
+      });
 
-    // Data format
-    const chartData = data.map((val, idx) => {
-      const days = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
-      return { day: days[idx] || `D${idx}`, value: val };
-    });
-    xAxis.data.setAll(chartData);
-    series.data.setAll(chartData);
+      // Add gradient fill
+      series.fills.template.setAll({
+        fillOpacity: 1,
+        visible: true,
+        fill: color,
+      });
+    
+      series.fills.template.set("fillGradient", am5.LinearGradient.new(root, {
+        stops: [{
+          opacity: 0.15
+        }, {
+          opacity: 0
+        }],
+        rotation: 90
+      }));
 
-    series.appear(1000);
-    chart.appear(1000, 100);
+      // Data format
+      const chartData = data.map((val, idx) => {
+        const days = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
+        return { day: days[idx] || `D${idx}`, value: val };
+      });
+      xAxis.data.setAll(chartData);
+      series.data.setAll(chartData);
+
+      series.appear(1000);
+      chart.appear(1000, 100);
+    };
+
+    initChart();
 
     return () => {
-      root.dispose();
+      isMounted = false;
+      if (root) root.dispose();
     };
   }, [data, type]);
 

@@ -32,10 +32,10 @@ export default function DashboardSidebar() {
       <aside className="hidden w-[260px] flex-col border-r border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 lg:flex">
         <Link href="/" className="mb-8 flex items-center gap-3 px-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 font-bold text-white shadow-sm">
-            Q
+            
           </div>
           <div>
-            <p className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Quantiva</p>
+            <p className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">ReMath</p>
           </div>
         </Link>
 
@@ -60,19 +60,7 @@ export default function DashboardSidebar() {
           })}
         </nav>
 
-        <div className="mt-auto rounded-3xl bg-indigo-50/50 p-5 text-center border border-indigo-100/50 relative overflow-hidden dark:bg-indigo-500/5 dark:border-indigo-500/10">
-          <div className="absolute top-0 right-0 -mr-4 -mt-4 h-16 w-16 rounded-full bg-indigo-100 blur-2xl dark:bg-indigo-500/10"></div>
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm mb-4 border border-indigo-50 dark:bg-slate-800 dark:border-slate-700">
-            <Crown className="h-7 w-7 text-yellow-500" />
-          </div>
-          <p className="text-sm font-bold text-slate-900 dark:text-white">Premium Member</p>
-          <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-            Akses semua fitur premium dan materi eksklusif.
-          </p>
-          <button className="mt-4 w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:opacity-90">
-            Upgrade Sekarang
-          </button>
-        </div>
+
       </aside>
 
       {/* Mobile Bottom Navigation */}

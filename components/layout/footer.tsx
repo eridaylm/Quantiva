@@ -16,9 +16,9 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 font-bold text-white shadow-sm">
-              Q
+              
             </div>
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">Quantiva</span>
+            <span className="text-2xl font-bold text-slate-900 dark:text-white">ReMath</span>
           </div>
           <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500 dark:text-slate-400">
             {t.footer.description}

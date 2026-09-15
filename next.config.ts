@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "radix-ui",
+      "@amcharts/amcharts5",
+    ],
+  },
 };
 
 export default nextConfig;

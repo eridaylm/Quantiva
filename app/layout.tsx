@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EduDiagnostik - Tes Diagnostik Matematika Adaptif",
+  title: "ReMath - Tes Diagnostik Matematika",
   description: "Platform diagnostik matematika adaptif untuk menemukan fondasi belajar sejati siswa jenjang SMA tanpa stigma.",
 };
 
