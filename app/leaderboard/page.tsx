@@ -19,8 +19,11 @@ import {
   ArrowRight
 } from 'lucide-react';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function LeaderboardPage() {
+  const { t } = useLanguage();
+  const lb = t.leaderboardPage;
   const [selectedSubtopic, setSelectedSubtopic] = useState<SubTopic>('Aljabar');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -60,21 +63,21 @@ export default function LeaderboardPage() {
     if (rank === 1) {
       return (
         <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800 border border-amber-300 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-800">
-          <span className="text-sm">🥇</span> Juara 1
+          <span className="text-sm">🥇</span> {lb.badges.champ1}
         </span>
       );
     }
     if (rank === 2) {
       return (
         <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 border border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">
-          <span className="text-sm">🥈</span> Juara 2
+          <span className="text-sm">🥈</span> {lb.badges.champ2}
         </span>
       );
     }
     if (rank === 3) {
       return (
         <span className="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-bold text-orange-800 border border-orange-300 dark:bg-orange-950 dark:text-orange-200 dark:border-orange-800">
-          <span className="text-sm">🥉</span> Juara 3
+          <span className="text-sm">🥉</span> {lb.badges.champ3}
         </span>
       );
     }
@@ -90,7 +93,7 @@ export default function LeaderboardPage() {
       return (
         <span className="inline-flex items-center gap-1 rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-          SMA Mastered
+          {lb.mastery.sma}
         </span>
       );
     }
@@ -98,14 +101,14 @@ export default function LeaderboardPage() {
       return (
         <span className="inline-flex items-center gap-1 rounded-md bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800 border border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800">
           <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
-          SMP Foundational
+          {lb.mastery.smp}
         </span>
       );
     }
     return (
       <span className="inline-flex items-center gap-1 rounded-md bg-orange-100 px-2.5 py-0.5 text-xs font-bold text-orange-800 border border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800">
         <span className="h-1.5 w-1.5 rounded-full bg-orange-500"></span>
-        SD Foundational
+        {lb.mastery.sd}
       </span>
     );
   };
@@ -125,14 +128,14 @@ export default function LeaderboardPage() {
                     <Trophy className="h-4 w-4" />
                   </div>
                   <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
-                    Hall of Fame Matematika Adaptif
+                    {lb.hero.badge}
                   </span>
                 </div>
                 <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                  Papan Peringkat Sub-Topik
+                  {lb.hero.title}
                 </h1>
                 <p className="mt-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl">
-                  Daftar 10 peserta tercepat dan paling akurat yang menuntaskan penentuan fondasi pada tiap domain matematika.
+                  {lb.hero.description}
                 </p>
               </div>
 
@@ -143,7 +146,7 @@ export default function LeaderboardPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-blue-500/25 hover:opacity-95 transition"
                 >
                   <Sparkles className="h-4 w-4" />
-                  <span>Uji Kemampuanmu Sekarang</span>
+                  <span>{lb.hero.cta}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -153,7 +156,7 @@ export default function LeaderboardPage() {
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-4 dark:border-amber-900/40 dark:bg-amber-950/20">
                 <div className="flex items-center justify-between text-xs font-semibold text-amber-700 dark:text-amber-300">
-                  <span>Peringkat 1 ({selectedSubtopic})</span>
+                  <span>{lb.metrics.rank1} ({selectedSubtopic})</span>
                   <Trophy className="h-4 w-4 text-amber-600" />
                 </div>
                 <div className="mt-2">
@@ -161,14 +164,14 @@ export default function LeaderboardPage() {
                     {metrics.fastestStudent}
                   </div>
                   <div className="text-xs text-amber-700/80 dark:text-amber-400 font-mono mt-0.5">
-                    Waktu Tempuh: {metrics.fastestTime}
+                    {lb.metrics.time}: {metrics.fastestTime}
                   </div>
                 </div>
               </div>
 
               <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-4 dark:border-blue-900/40 dark:bg-blue-950/20">
                 <div className="flex items-center justify-between text-xs font-semibold text-blue-700 dark:text-blue-300">
-                  <span>Rata-rata Waktu Top 10</span>
+                  <span>{lb.metrics.avgTime}</span>
                   <Timer className="h-4 w-4 text-blue-600" />
                 </div>
                 <div className="mt-2">
@@ -176,22 +179,22 @@ export default function LeaderboardPage() {
                     {metrics.avgTimeFormatted}
                   </div>
                   <div className="text-xs text-blue-600/80 dark:text-blue-400 mt-0.5">
-                    Efisiensi penalaran tingkat tinggi
+                    {lb.metrics.avgDesc}
                   </div>
                 </div>
               </div>
 
               <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-slate-800 dark:bg-slate-800/40">
                 <div className="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
-                  <span>Total Partisipan Terverifikasi</span>
+                  <span>{lb.metrics.totalParticipants}</span>
                   <UserCheck className="h-4 w-4 text-slate-500" />
                 </div>
                 <div className="mt-2">
                   <div className="text-xl font-bold text-slate-900 dark:text-white">
-                    {metrics.totalCount} Siswa
+                    {metrics.totalCount} {lb.metrics.students}
                   </div>
                   <div className="text-xs text-slate-400 mt-0.5">
-                    Tercatat dalam leaderboard resmi
+                    {lb.metrics.totalDesc}
                   </div>
                 </div>
               </div>
@@ -229,7 +232,7 @@ export default function LeaderboardPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari nama siswa atau sekolah..."
+                placeholder={lb.filter.searchPlaceholder}
                 className="w-full rounded-xl border border-slate-200 bg-white py-2 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
               />
             </div>
@@ -241,19 +244,19 @@ export default function LeaderboardPage() {
               <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
                 <thead className="border-b border-slate-200 bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-400">
                   <tr>
-                    <th className="py-3.5 px-4 w-24 text-center">Peringkat</th>
-                    <th className="py-3.5 px-4 min-w-[200px]">Nama Siswa</th>
-                    <th className="py-3.5 px-4 w-28 text-center">Jenjang Asal</th>
-                    <th className="py-3.5 px-4 min-w-[180px]">Penguasaan Level</th>
-                    <th className="py-3.5 px-4 w-32 text-right">Waktu Tempuh</th>
-                    <th className="py-3.5 px-4 w-28 text-right">Tanggal</th>
+                    <th className="py-3.5 px-4 w-24 text-center">{lb.table.rank}</th>
+                    <th className="py-3.5 px-4 min-w-[200px]">{lb.table.name}</th>
+                    <th className="py-3.5 px-4 w-28 text-center">{lb.table.level}</th>
+                    <th className="py-3.5 px-4 min-w-[180px]">{lb.table.mastery}</th>
+                    <th className="py-3.5 px-4 w-32 text-right">{lb.table.time}</th>
+                    <th className="py-3.5 px-4 w-28 text-right">{lb.table.date}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/70">
                   {filteredEntries.length === 0 ? (
                     <tr>
                       <td colSpan={6} className="py-12 text-center text-slate-400">
-                        Tidak ditemukan peserta yang sesuai pencarian.
+                        {lb.table.empty}
                       </td>
                     </tr>
                   ) : (
@@ -348,10 +351,10 @@ export default function LeaderboardPage() {
 
             {/* Table Footer */}
             <div className="border-t border-slate-200 bg-slate-50/50 px-4 py-3 text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900/50 flex flex-col sm:flex-row items-center justify-between gap-2">
-              <span>Menampilkan 10 Peserta Terbaik untuk Topik {selectedSubtopic}</span>
+              <span>{lb.table.footerPrefix} {selectedSubtopic}</span>
               <div className="flex items-center gap-1 text-[11px] text-slate-400">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                <span>Seluruh catatan waktu diverifikasi oleh Timer Adaptif</span>
+                <span>{lb.table.footerVerified}</span>
               </div>
             </div>
           </div>

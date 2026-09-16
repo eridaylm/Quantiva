@@ -149,7 +149,7 @@ function MiniChart({ data, type }: { data: number[], type: "score" | "rank" }) {
 }
 
 export default function StatCard(stat: DashboardStat) {
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
 
   if (stat.type === "best") {
     return (

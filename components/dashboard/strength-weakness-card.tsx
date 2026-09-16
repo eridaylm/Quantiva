@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function StrengthWeaknessCard() {
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   const strongest = topicScores.slice(0, 3);
   const weakest = topicScores.slice(3, 6);
 

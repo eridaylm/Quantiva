@@ -3,9 +3,11 @@
 // components/charts/weekly-progress-chart.tsx
 import { useEffect, useRef } from "react";
 import { weeklyProgressData } from "@/data/dashboard";
+import { useLanguage } from "@/contexts/language-context";
 
 export default function WeeklyProgressChart() {
   const chartRef = useRef<HTMLDivElement | null>(null);
+  const { t: dict } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
@@ -63,7 +65,12 @@ export default function WeeklyProgressChart() {
         paddingTop: 10
       });
 
-      xAxis.data.setAll(weeklyProgressData);
+      const translatedData = weeklyProgressData.map((data, index) => ({
+        ...data,
+        day: dict.dashboard.weeklyChart.days[index]
+      }));
+
+      xAxis.data.setAll(translatedData);
 
       const yAxis = chart.yAxes.push(
         am5xy.ValueAxis.new(root, {
@@ -86,13 +93,13 @@ export default function WeeklyProgressChart() {
 
       const series = chart.series.push(
         am5xy.ColumnSeries.new(root, {
-          name: "Skor",
+          name: dict.dashboard.weeklyChart.score,
           xAxis,
           yAxis,
           valueYField: "score",
           categoryXField: "day",
           tooltip: am5.Tooltip.new(root, {
-            labelText: "{categoryX}: {valueY} Soal",
+            labelText: "{categoryX}: {valueY} " + dict.dashboard.weeklyChart.score,
           }),
         })
       );
@@ -129,7 +136,7 @@ export default function WeeklyProgressChart() {
         fillOpacity: 0.8
       });
 
-      series.data.setAll(weeklyProgressData);
+      series.data.setAll(translatedData);
 
       // Target Line (ValueAxis Range)
       const targetDataItem = yAxis.makeDataItem({
@@ -172,16 +179,16 @@ export default function WeeklyProgressChart() {
 
   return (
     <div className="rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 shadow-sm h-full flex flex-col">
-      <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-tight">Progress Mingguan</h3>
-      <p className="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">Jumlah soal yang kamu kerjakan</p>
+      <h3 className="text-[15px] font-bold text-slate-900 dark:text-white tracking-tight">{dict.dashboard.weeklyChart.title}</h3>
+      <p className="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">{dict.dashboard.weeklyChart.subtitle}</p>
       
       <div className="mt-4 flex-1 w-full min-h-[180px] relative">
          <div ref={chartRef} className="absolute inset-0 w-full h-full" />
       </div>
 
       <div className="mt-2 flex items-center justify-center gap-6 text-[11px] font-bold text-slate-500 dark:text-slate-400">
-         <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-[#7c5ff0]"></div> Soal Dikerjakan</div>
-         <div className="flex items-center gap-1.5"><div className="w-4 border-t-2 border-dashed border-[#10b981]"></div> Target</div>
+         <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-[#7c5ff0]"></div> {dict.dashboard.weeklyChart.completed}</div>
+         <div className="flex items-center gap-1.5"><div className="w-4 border-t-2 border-dashed border-[#10b981]"></div> {dict.dashboard.weeklyChart.target}</div>
       </div>
     </div>
   );

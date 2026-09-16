@@ -12,7 +12,7 @@ import { useLanguage } from "@/contexts/language-context";
 
 export default function DashboardHeader() {
   const { user, logout } = useAuth();
-  const { language, setLanguage, dict } = useLanguage();
+  const { language, setLanguage, t: dict } = useLanguage();
   
   const getInitials = (name: string) => {
     if (!name) return '?';

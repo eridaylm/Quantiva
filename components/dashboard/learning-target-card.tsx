@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function LearningTargetCard() {
-  const { dict, language } = useLanguage();
+  const { t: dict, language } = useLanguage();
   return (
     <div className="rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 shadow-sm h-full flex flex-col">
       <div className="flex justify-between items-end mb-6">
@@ -36,10 +36,7 @@ export default function LearningTargetCard() {
                  <div className="flex-1">
                     <div className="flex justify-between items-center mb-2">
                       <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200 leading-tight">
-                        {language === 'en' && item.title === 'Selesaikan 3 tes minggu ini' ? 'Complete 3 tests this week' :
-                         language === 'en' && item.title === 'Tingkatkan skor Aljabar ke 800' ? 'Improve Algebra score to 800' :
-                         language === 'en' && item.title === 'Kerjakan 100 soal latihan' ? 'Complete 100 practice questions' :
-                         item.title}
+                        {dict.dashboard.learningTargetsList[index] || item.title}
                       </p>
                       <p className="text-[11px] font-bold text-slate-900 dark:text-white">{item.target}</p>
                     </div>

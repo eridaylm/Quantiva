@@ -10,7 +10,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function RecentTests() {
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   return (
     <div className="rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 shadow-sm h-full flex flex-col">
       <div className="flex justify-between items-end mb-6">

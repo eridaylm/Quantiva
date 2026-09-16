@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTest } from '@/context/TestContext';
+import { useLanguage } from '@/contexts/language-context';
 import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
 import { SUBTOPICS_SEQUENCE } from '@/data/mockData';
@@ -25,6 +26,7 @@ import {
 
 export default function TestPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const {
     isTestActive,
     isTestFinished,
@@ -83,19 +85,19 @@ export default function TestPage() {
   // Level Styling helpers
   const levelBadgeConfig = {
     SMA: {
-      label: 'Level SMA (Puncak)',
+      label: t.testPage.engine.levels.smaLabel,
       badgeClass: 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800',
-      tag: 'Tingkat Standar SMA',
+      tag: t.testPage.engine.levels.smaTag,
     },
     SMP: {
-      label: 'Level SMP (Jembatan Konseptual)',
+      label: t.testPage.engine.levels.smpLabel,
       badgeClass: 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800',
-      tag: 'Penelusuran Akar Masalah SMP',
+      tag: t.testPage.engine.levels.smpTag,
     },
     SD: {
-      label: 'Level SD (Fondasi Awal)',
+      label: t.testPage.engine.levels.sdLabel,
       badgeClass: 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800',
-      tag: 'Fondasi Paling Mula SD',
+      tag: t.testPage.engine.levels.sdTag,
     },
   }[currentLevel];
 
@@ -116,10 +118,10 @@ export default function TestPage() {
                   <BrainCircuit className="h-8 w-8" />
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                  Tes Diagnostik Matematika Adaptif
+                  {t.testPage.onboarding.title}
                 </h1>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Menemukan fondasi pemahaman matematika sejati kamu tanpa rasa takut atau penghakiman.
+                  {t.testPage.onboarding.description}
                 </p>
               </div>
 
@@ -128,30 +130,30 @@ export default function TestPage() {
                 <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-4 dark:border-blue-900/50 dark:bg-blue-950/20">
                   <div className="flex items-center gap-2 font-bold text-xs text-blue-800 dark:text-blue-300 mb-1">
                     <Layers className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                    <span>Blok 3 Soal Adaptif</span>
+                    <span>{t.testPage.onboarding.cards.block3.title}</span>
                   </div>
                   <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-normal">
-                    Dimulai dari soal SMA. Jika ada kendala, sistem otomatis mencari jembatan konsep di level SMP atau SD.
+                    {t.testPage.onboarding.cards.block3.desc}
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-amber-100 bg-amber-50/60 p-4 dark:border-amber-900/50 dark:bg-amber-950/20">
                   <div className="flex items-center gap-2 font-bold text-xs text-amber-800 dark:text-amber-300 mb-1">
                     <HeartHandshake className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-                    <span>Tombol Kejujuran</span>
+                    <span>{t.testPage.onboarding.cards.honestyBtn.title}</span>
                   </div>
                   <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-normal">
-                    Ada opsi khusus <span className="font-semibold">&quot;Tidak Tahu&quot;</span> agar kamu tidak perlu menebak asal. Integritasmu dihargai tinggi!
+                    {t.testPage.onboarding.cards.honestyBtn.desc}
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 dark:border-emerald-900/50 dark:bg-emerald-950/20">
                   <div className="flex items-center gap-2 font-bold text-xs text-emerald-800 dark:text-emerald-300 mb-1">
                     <FastForward className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                    <span>Lompati Level</span>
+                    <span>{t.testPage.onboarding.cards.skipLevel.title}</span>
                   </div>
                   <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-normal">
-                    Jika materi SMA belum pernah diajarkan di sekolahmu, kamu bisa langsung melewati ke level dasar tanpa beban.
+                    {t.testPage.onboarding.cards.skipLevel.desc}
                   </p>
                 </div>
               </div>
@@ -160,13 +162,13 @@ export default function TestPage() {
               <form onSubmit={handleStart} className="space-y-4 max-w-md mx-auto">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 text-left">
-                    Nama Siswa / Peserta Tes
+                    {t.testPage.onboarding.form.nameLabel}
                   </label>
                   <input
                     type="text"
                     value={inputName}
                     onChange={(e) => setInputName(e.target.value)}
-                    placeholder="Masukkan nama lengkap kamu..."
+                    placeholder={t.testPage.onboarding.form.namePlaceholder}
                     className="w-full rounded-xl border border-slate-300 bg-white py-2.5 px-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                   />
                 </div>
@@ -175,14 +177,14 @@ export default function TestPage() {
                   type="submit"
                   className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 py-3 px-6 text-sm font-bold text-white shadow-lg shadow-blue-500/25 transition hover:opacity-95"
                 >
-                  <span>Mulai Tes Diagnostik Sekarang</span>
+                  <span>{t.testPage.onboarding.form.startBtn}</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </form>
 
               {/* Quick Preview Action for Demonstrators/Judges */}
               <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
-                <span className="text-xs text-slate-400 mr-2">Untuk Kebutuhan Demonstrasi Cepat:</span>
+                <span className="text-xs text-slate-400 mr-2">{t.testPage.onboarding.demo.prefix}</span>
                 <button
                   onClick={() => {
                     loadSampleResult();
@@ -191,7 +193,7 @@ export default function TestPage() {
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 underline underline-offset-4"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
-                  <span>Lihat Contoh Dasbor Hasil Diagnostik Langsung</span>
+                  <span>{t.testPage.onboarding.demo.linkText}</span>
                 </button>
               </div>
             </div>
@@ -260,7 +262,7 @@ export default function TestPage() {
                   <span>{formatTimer(totalTimeSeconds)}</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                  <span>Peserta:</span>
+                  <span>{t.testPage.engine.tracker.participant}</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">{studentName}</span>
                 </div>
               </div>
@@ -269,11 +271,11 @@ export default function TestPage() {
                 {totalHonestyCount > 0 && (
                   <div className="flex items-center gap-1 text-[11px] font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-md border border-amber-200/60 dark:border-amber-900/60">
                     <ShieldCheck className="h-3.5 w-3.5 text-amber-600" />
-                    <span>Kejujuran Teruji: {totalHonestyCount}x</span>
+                    <span>{t.testPage.engine.tracker.honestyTested} {totalHonestyCount}x</span>
                   </div>
                 )}
                 <span className="text-[11px] text-slate-400">
-                  Sub-Topik {activeSubTopicIndex + 1} / 5
+                  {t.testPage.engine.tracker.subTopicOf} {activeSubTopicIndex + 1} / 5
                 </span>
               </div>
             </div>
@@ -288,7 +290,7 @@ export default function TestPage() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                    Sub-Topik: {currentSubTopic}
+                    {t.testPage.engine.header.subtopicLabel} {currentSubTopic}
                   </span>
                   <span className="text-slate-300 dark:text-slate-700">•</span>
                   <span className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-bold border ${levelBadgeConfig.badgeClass}`}>
@@ -296,10 +298,10 @@ export default function TestPage() {
                   </span>
                 </div>
                 <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
-                  Paket 3 Soal Penentuan Fondasi
+                  {t.testPage.engine.header.packageTitle}
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                  Jawab minimal 2 dari 3 soal dengan benar (≥67%) untuk mengonfirmasi penguasaan level ini.
+                  {t.testPage.engine.header.packageDesc}
                 </p>
               </div>
 
@@ -309,14 +311,14 @@ export default function TestPage() {
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-200 bg-amber-50/70 px-3.5 py-2.5 text-xs font-bold text-amber-800 hover:bg-amber-100 hover:border-amber-300 dark:border-amber-900/60 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-950/80 transition shrink-0 shadow-xs"
               >
                 <FastForward className="h-4 w-4 text-amber-600" />
-                <span>Menyerah / Lompati Level Ini</span>
+                <span>{t.testPage.engine.header.bypassBtn}</span>
               </button>
             </div>
 
             {/* Block Question 3-Step Navigator */}
             <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
               <span className="text-xs font-medium text-slate-500">
-                Pilih Soal dalam Blok:
+                {t.testPage.engine.header.chooseQuestion}
               </span>
               <div className="flex items-center gap-2">
                 {currentBlockQuestions.map((q, idx) => {
@@ -356,7 +358,7 @@ export default function TestPage() {
                     {currentQuestionIndex + 1}
                   </span>
                   <span className="text-xs font-semibold text-slate-500">
-                    Soal {currentQuestionIndex + 1} dari {currentBlockQuestions.length}
+                    {t.testPage.engine.question.questionOf.replace('{current}', String(currentQuestionIndex + 1)).replace('{total}', String(currentBlockQuestions.length))}
                   </span>
                 </div>
                 {currentQuestion.conceptTag && (
@@ -374,7 +376,7 @@ export default function TestPage() {
                 {currentQuestion.hint && (
                   <div className="mt-3 flex items-start gap-2 rounded-xl bg-blue-50/60 p-3 text-xs text-blue-800 dark:bg-blue-950/20 dark:text-blue-300 border border-blue-100 dark:border-blue-900/40">
                     <Info className="h-4 w-4 shrink-0 mt-0.5" />
-                    <span>Petunjuk: {currentQuestion.hint}</span>
+                    <span>{t.testPage.engine.question.hintPrefix} {currentQuestion.hint}</span>
                   </div>
                 )}
               </div>
@@ -428,10 +430,10 @@ export default function TestPage() {
                     </div>
                     <div>
                       <span className="text-xs sm:text-sm font-bold block">
-                        Saya Belum Mempelajari Ini / Tidak Tahu
+                        {t.testPage.engine.question.honestyOptionTitle}
                       </span>
                       <span className="text-[11px] text-amber-700/80 dark:text-amber-400 block">
-                        Mencegah tebakan acak agar sistem mendeteksi fondasi materi yang sesungguhnya.
+                        {t.testPage.engine.question.honestyOptionDesc}
                       </span>
                     </div>
                   </div>
@@ -440,7 +442,7 @@ export default function TestPage() {
                       ? 'bg-amber-600 text-white'
                       : 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
                   }`}>
-                    {currentSelected === 'UNKNOWN' ? 'Dipilih' : 'Pilih Opsi Ini'}
+                    {currentSelected === 'UNKNOWN' ? t.testPage.engine.question.honestyOptionSelected : t.testPage.engine.question.honestyOptionSelect}
                   </span>
                 </button>
               </div>
@@ -454,7 +456,7 @@ export default function TestPage() {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                 >
                   <ChevronLeft className="h-4 w-4" />
-                  <span>Soal Sebelumnya</span>
+                  <span>{t.testPage.engine.nav.prevBtn}</span>
                 </button>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -464,7 +466,7 @@ export default function TestPage() {
                       onClick={goToNextQuestion}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 shadow-sm"
                     >
-                      <span>Soal Berikutnya</span>
+                      <span>{t.testPage.engine.nav.nextBtn}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   ) : (
@@ -474,7 +476,7 @@ export default function TestPage() {
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-blue-500/25 hover:opacity-95"
                     >
                       <CheckCircle2 className="h-4 w-4" />
-                      <span>Selesaikan Blok ({answeredCountInBlock}/3 Terisi)</span>
+                      <span>{t.testPage.engine.nav.finishBlockBtn.replace('{answered}', String(answeredCountInBlock))}</span>
                     </button>
                   )}
                 </div>
@@ -482,7 +484,7 @@ export default function TestPage() {
             </div>
           ) : (
             <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
-              <p className="text-sm font-semibold">Memuat paket soal...</p>
+              <p className="text-sm font-semibold">{t.testPage.engine.nav.loadingPackage}</p>
             </div>
           )}
         </div>
@@ -498,10 +500,10 @@ export default function TestPage() {
               <FastForward className="h-7 w-7" />
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              Lompati Blok {currentLevel} {currentSubTopic}?
+              {t.testPage.engine.modals.bypass.title.replace('{level}', currentLevel).replace('{subtopic}', currentSubTopic)}
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left">
-              Memilih tombol ini akan menandai blok 3 soal level <span className="font-bold">{currentLevel}</span> saat ini belum dikuasai, dan sistem adaptif akan langsung membimbingmu ke tingkat jenjang sebelumnya tanpa perlu menebak sisa soal.
+              {t.testPage.engine.modals.bypass.descPart1}<span className="font-bold">{currentLevel}</span>{t.testPage.engine.modals.bypass.descPart2}
             </p>
             <div className="mt-6 flex items-center justify-center gap-2.5">
               <button
@@ -509,7 +511,7 @@ export default function TestPage() {
                 onClick={() => setShowBypassModal(false)}
                 className="flex-1 rounded-xl border border-slate-200 py-2.5 px-4 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300"
               >
-                Tetap Kerjakan
+                {t.testPage.engine.modals.bypass.keepTryingBtn}
               </button>
               <button
                 type="button"
@@ -519,7 +521,7 @@ export default function TestPage() {
                 }}
                 className="flex-1 rounded-xl bg-amber-600 py-2.5 px-4 text-xs font-bold text-white hover:bg-amber-700 shadow-md shadow-amber-600/20"
               >
-                Ya, Lompati Level
+                {t.testPage.engine.modals.bypass.skipBtn}
               </button>
             </div>
           </div>
@@ -534,10 +536,10 @@ export default function TestPage() {
               <CheckCircle2 className="h-7 w-7" />
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              Evaluasi Blok Soal Ini?
+              {t.testPage.engine.modals.submit.title}
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Kamu telah mengisi <span className="font-bold text-blue-600">{answeredCountInBlock}</span> dari 3 soal pada level <span className="font-bold">{currentLevel}</span>. Sistem akan mengevaluasi apakah kamu mencapai ambang batas kelulusan (≥ 2 soal benar).
+              {t.testPage.engine.modals.submit.descPart1}<span className="font-bold text-blue-600">{answeredCountInBlock}</span>{t.testPage.engine.modals.submit.descPart2}<span className="font-bold">{currentLevel}</span>{t.testPage.engine.modals.submit.descPart3}
             </p>
             <div className="mt-6 flex items-center justify-center gap-2.5">
               <button
@@ -545,7 +547,7 @@ export default function TestPage() {
                 onClick={() => setShowSubmitModal(false)}
                 className="flex-1 rounded-xl border border-slate-200 py-2.5 px-4 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300"
               >
-                Cek Jawaban Lagi
+                {t.testPage.engine.modals.submit.checkAgainBtn}
               </button>
               <button
                 type="button"
@@ -555,7 +557,7 @@ export default function TestPage() {
                 }}
                 className="flex-1 rounded-xl bg-blue-600 py-2.5 px-4 text-xs font-bold text-white hover:bg-blue-700 shadow-md shadow-blue-500/20"
               >
-                Kirim & Evaluasi
+                {t.testPage.engine.modals.submit.submitBtn}
               </button>
             </div>
           </div>

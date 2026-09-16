@@ -9,7 +9,7 @@ import { Flame, X } from 'lucide-react';
 
 export default function DashboardWelcome() {
   const { user } = useAuth();
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   const firstName = user?.name?.split(' ')[0] || 'Pengguna';
   
   const [showPopup, setShowPopup] = useState(false);

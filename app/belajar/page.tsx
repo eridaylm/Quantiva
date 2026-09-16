@@ -17,7 +17,7 @@ const modules = [
 
 export default function BelajarPage() {
   const { user } = useAuth();
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
 
   if (!user) return null;

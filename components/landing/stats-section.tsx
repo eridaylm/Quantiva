@@ -4,25 +4,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/language-context";
 
-const containerVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.1,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-  },
-};
 
 export default function StatsSection() {
   const { t } = useLanguage();
@@ -31,15 +13,22 @@ export default function StatsSection() {
     <section className="pb-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="rounded-[28px] bg-gradient-to-r from-blue-600 to-indigo-500 px-5 py-6 text-white shadow-lg shadow-blue-100 dark:shadow-none sm:px-8 sm:py-8"
         >
           <div className="grid grid-cols-2 gap-5 sm:gap-8 xl:grid-cols-4">
-            {t.stats.items.map((stat) => (
-              <motion.div variants={itemVariants} key={stat.label} className="flex items-center gap-3 sm:gap-4">
+            {t.stats.items.map((stat, index) => (
+              <motion.div 
+                key={stat.label} 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-center gap-3 sm:gap-4"
+              >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl sm:h-14 sm:w-14 sm:text-2xl">
                   ✦
                 </div>

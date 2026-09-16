@@ -1,5 +1,6 @@
 'use client';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/contexts/language-context';
 import { useState, useRef } from 'react';
 import DashboardSidebar from '@/components/dashboard/dashboard-sidebar';
 import DashboardHeader from '@/components/dashboard/dashboard-header';
@@ -12,6 +13,7 @@ import { useCallback } from 'react';
 
 export default function PengaturanPage() {
   const { user, updateProfile, changePassword } = useAuth();
+  const { t: dict } = useLanguage();
   
   const [firstName, setFirstName] = useState(user?.firstName || user?.name?.split(' ')[0] || '');
   const [lastName, setLastName] = useState(user?.lastName || user?.name?.split(' ').slice(1).join(' ') || '');
@@ -43,7 +45,7 @@ export default function PengaturanPage() {
   const handleProfileSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfile({ firstName, lastName, username, avatarUrl });
-    setProfileMsg('Profil berhasil diperbarui!');
+    setProfileMsg(dict.settingsPage.profile.successMsg);
     setTimeout(() => setProfileMsg(''), 3000);
   };
   
@@ -52,18 +54,18 @@ export default function PengaturanPage() {
     setPassError('');
     setPassMsg('');
     if (newPass !== confirmPass) {
-      setPassError('Konfirmasi sandi baru tidak cocok.');
+      setPassError(dict.settingsPage.security.errorMismatch);
       return;
     }
     const res = changePassword(oldPass, newPass);
     if (res.success) {
-      setPassMsg('Kata sandi berhasil diubah!');
+      setPassMsg(dict.settingsPage.security.successMsg);
       setOldPass('');
       setNewPass('');
       setConfirmPass('');
       setTimeout(() => setPassMsg(''), 3000);
     } else {
-      setPassError(res.error || 'Terjadi kesalahan');
+      setPassError(res.error || dict.settingsPage.security.errorDefault);
     }
   };
   
@@ -71,7 +73,7 @@ export default function PengaturanPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 2 * 1024 * 1024) {
-      alert('Ukuran file maksimal 2MB!');
+      alert(dict.settingsPage.profile.photoSizeError);
       return;
     }
     const reader = new FileReader();
@@ -80,7 +82,7 @@ export default function PengaturanPage() {
       setShowCropper(true);
     };
     reader.readAsDataURL(file);
-    e.target.value = ''; // clear input so same file can be selected again
+    e.target.value = '';
   };
 
   const handleApplyCrop = async () => {
@@ -90,19 +92,19 @@ export default function PengaturanPage() {
       setShowCropper(false);
     } catch (e) {
       console.error(e);
-      alert('Gagal memotong gambar.');
+      alert(dict.settingsPage.crop.error);
     }
   };
 
   const pageContent = (
     <div className="max-w-4xl mx-auto space-y-6 pt-4">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Pengaturan Akun</h1>
+      <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{dict.settingsPage.title}</h1>
       
       {showCropper && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-md overflow-hidden flex flex-col shadow-2xl">
             <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-              <h3 className="font-bold text-slate-900 dark:text-white">Sesuaikan Foto</h3>
+              <h3 className="font-bold text-slate-900 dark:text-white">{dict.settingsPage.crop.title}</h3>
               <button onClick={() => setShowCropper(false)} className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
                 <X className="h-5 w-5" />
               </button>
@@ -122,7 +124,7 @@ export default function PengaturanPage() {
             </div>
             <div className="p-4 bg-slate-50 dark:bg-slate-950 flex flex-col gap-4">
               <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-500 font-medium">Zoom</span>
+                <span className="text-xs text-slate-500 font-medium">{dict.settingsPage.crop.zoom}</span>
                 <input
                   type="range"
                   value={zoom}
@@ -134,20 +136,18 @@ export default function PengaturanPage() {
                 />
               </div>
               <div className="flex justify-end gap-2">
-                <button onClick={() => setShowCropper(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">Batal</button>
-                <button onClick={handleApplyCrop} className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition">Terapkan</button>
+                <button onClick={() => setShowCropper(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">{dict.settingsPage.crop.cancel}</button>
+                <button onClick={handleApplyCrop} className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition">{dict.settingsPage.crop.apply}</button>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Profile Card */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-6">Profil & Identitas</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-6">{dict.settingsPage.profile.title}</h2>
         
         <form onSubmit={handleProfileSubmit} className="space-y-6">
-          {/* Avatar Upload */}
           <div className="flex items-center gap-6">
             <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
               <div className="h-24 w-24 rounded-full overflow-hidden border-4 border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
@@ -165,23 +165,23 @@ export default function PengaturanPage() {
               <input type="file" ref={fileInputRef} accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
             <div>
-              <p className="text-sm font-medium text-slate-900 dark:text-white">Foto Profil</p>
-              <p className="text-xs text-slate-500 mt-1">Format JPG/PNG maksimal 1MB.</p>
-              <button type="button" onClick={() => setAvatarUrl('')} className="text-xs text-red-500 font-medium mt-2 hover:underline">Hapus Foto</button>
+              <p className="text-sm font-medium text-slate-900 dark:text-white">{dict.settingsPage.profile.photo}</p>
+              <p className="text-xs text-slate-500 mt-1">{dict.settingsPage.profile.photoFormat}</p>
+              <button type="button" onClick={() => setAvatarUrl('')} className="text-xs text-red-500 font-medium mt-2 hover:underline">{dict.settingsPage.profile.removePhoto}</button>
             </div>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Nama Depan</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.profile.firstName}</label>
               <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} required className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Nama Belakang</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.profile.lastName}</label>
               <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Username <span className="text-slate-400 font-normal">(Tampil di peringkat)</span></label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.profile.username} <span className="text-slate-400 font-normal">{dict.settingsPage.profile.usernameHint}</span></label>
               <input type="text" value={username} onChange={e => setUsername(e.target.value.replace(/\s/g, ''))} required className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
             </div>
           </div>
@@ -191,39 +191,38 @@ export default function PengaturanPage() {
               {profileMsg && <p className="text-sm text-green-600 flex items-center gap-1"><CheckCircle2 className="h-4 w-4"/> {profileMsg}</p>}
             </div>
             <button type="submit" className="rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">
-              Simpan Profil
+              {dict.settingsPage.profile.saveBtn}
             </button>
           </div>
         </form>
       </div>
 
-      {/* Security Card */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-6">
           <Lock className="h-5 w-5 text-slate-400" />
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Keamanan & Sandi</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{dict.settingsPage.security.title}</h2>
         </div>
         
         <form onSubmit={handlePassSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Sandi Lama</label>
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.security.oldPass}</label>
             <input type="password" value={oldPass} onChange={e => setOldPass(e.target.value)} required className="w-full max-w-sm rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Sandi Baru</label>
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.security.newPass}</label>
             <input type="password" value={newPass} onChange={e => setNewPass(e.target.value)} required className="w-full max-w-sm rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Konfirmasi Sandi Baru</label>
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">{dict.settingsPage.security.confirmPass}</label>
             <input type="password" value={confirmPass} onChange={e => setConfirmPass(e.target.value)} required className="w-full max-w-sm rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-sm outline-none focus:border-blue-500 dark:bg-slate-950 dark:border-slate-800 dark:text-white" />
           </div>
           
           <div className="flex items-center gap-4 pt-4">
             <button type="submit" className="rounded-xl bg-slate-900 dark:bg-white dark:text-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90">
-              Ganti Sandi
+              {dict.settingsPage.security.changeBtn}
             </button>
-            <button type="button" onClick={() => alert('Link reset sandi telah dikirim ke email Anda!')} className="text-sm font-medium text-blue-600 hover:underline">
-              Lupa Sandi Lama?
+            <button type="button" onClick={() => alert(dict.settingsPage.security.resetSent)} className="text-sm font-medium text-blue-600 hover:underline">
+              {dict.settingsPage.security.forgotPass}
             </button>
           </div>
           
@@ -241,7 +240,7 @@ export default function PengaturanPage() {
         <AdminHeader />
         <main className="flex-1 p-4 sm:p-8">
           <div className="mb-4">
-             <Link href="/admin/questions" className="text-sm text-blue-600 font-medium hover:underline">← Kembali ke Dashboard Admin</Link>
+             <Link href="/admin/questions" className="text-sm text-blue-600 font-medium hover:underline">{dict.settingsPage.admin.back}</Link>
           </div>
           {pageContent}
         </main>

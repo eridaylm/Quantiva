@@ -343,6 +343,199 @@ export const id = {
         levelSmaAdvanced: "Lanjut (SMA)",
         levelSd: "Dasar (SD)"
       }
+    },
+    weeklyChart: {
+      title: "Progress Mingguan",
+      subtitle: "Jumlah soal yang kamu kerjakan",
+      score: "Skor",
+      target: "Target",
+      completed: "Soal Dikerjakan",
+      days: ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"]
+    },
+    badgesList: [
+      { title: "Fast Thinker", desc: "Selesaikan tes < 15 menit" },
+      { title: "Streak 7 Hari", desc: "Belajar 7 hari berturut-turut" },
+      { title: "Top 10%", desc: "Masuk 10% terbaik minggu ini" },
+      { title: "Problem Solver", desc: "Selesaikan 50 soal latihan" }
+    ],
+    learningTargetsList: [
+      "Selesaikan 3 tes minggu ini",
+      "Tingkatkan skor Aljabar ke 800",
+      "Kerjakan 100 soal latihan"
+    ],
+    bottomBanner: {
+      title: "Kamu luar biasa! 💪",
+      subtitle: "Terus pertahankan konsistensimu dan capai tujuan belajarmu. Kami siap membantumu setiap saat.",
+      btnText: "Mulai Tes Sekarang"
+    }
+  },
+  leaderboardPage: {
+    hero: {
+      badge: "Hall of Fame Matematika Adaptif",
+      title: "Papan Peringkat Sub-Topik",
+      description: "Daftar 10 peserta tercepat dan paling akurat yang menuntaskan penentuan fondasi pada tiap domain matematika.",
+      cta: "Uji Kemampuanmu Sekarang"
+    },
+    metrics: {
+      rank1: "Peringkat 1",
+      time: "Waktu Tempuh",
+      avgTime: "Rata-rata Waktu Top 10",
+      avgDesc: "Efisiensi penalaran tingkat tinggi",
+      totalParticipants: "Total Partisipan Terverifikasi",
+      totalDesc: "Tercatat dalam leaderboard resmi",
+      students: "Siswa"
+    },
+    filter: {
+      searchPlaceholder: "Cari nama siswa atau sekolah..."
+    },
+    table: {
+      rank: "Peringkat",
+      name: "Nama Siswa",
+      level: "Jenjang Asal",
+      mastery: "Penguasaan Level",
+      time: "Waktu Tempuh",
+      date: "Tanggal",
+      empty: "Tidak ditemukan peserta yang sesuai pencarian.",
+      footerPrefix: "Menampilkan 10 Peserta Terbaik untuk Topik",
+      footerVerified: "Seluruh catatan waktu diverifikasi oleh Timer Adaptif"
+    },
+    badges: {
+      champ1: "Juara 1",
+      champ2: "Juara 2",
+      champ3: "Juara 3"
+    },
+    mastery: {
+      sma: "SMA Mastered",
+      smp: "SMP Foundational",
+      sd: "SD Foundational"
+    }
+  },
+  testPage: {
+    onboarding: {
+      title: "Tes Diagnostik Matematika Adaptif",
+      description: "Menemukan fondasi pemahaman matematika sejati kamu tanpa rasa takut atau penghakiman.",
+      cards: {
+        block3: {
+          title: "Blok 3 Soal Adaptif",
+          desc: "Dimulai dari soal SMA. Jika ada kendala, sistem otomatis mencari jembatan konsep di level SMP atau SD."
+        },
+        honestyBtn: {
+          title: "Tombol Kejujuran",
+          desc: 'Ada opsi khusus "Tidak Tahu" agar kamu tidak perlu menebak asal. Integritasmu dihargai tinggi!'
+        },
+        skipLevel: {
+          title: "Lompati Level",
+          desc: "Jika materi SMA belum pernah diajarkan di sekolahmu, kamu bisa langsung melewati ke level dasar tanpa beban."
+        }
+      },
+      form: {
+        nameLabel: "Nama Siswa / Peserta Tes",
+        namePlaceholder: "Masukkan nama lengkap kamu...",
+        startBtn: "Mulai Tes Diagnostik Sekarang"
+      },
+      demo: {
+        prefix: "Untuk Kebutuhan Demonstrasi Cepat:",
+        linkText: "Lihat Contoh Dasbor Hasil Diagnostik Langsung"
+      }
+    },
+    engine: {
+      tracker: {
+        participant: "Peserta:",
+        honestyTested: "Kejujuran Teruji:",
+        subTopicOf: "Sub-Topik"
+      },
+      header: {
+        subtopicLabel: "Sub-Topik:",
+        packageTitle: "Paket 3 Soal Penentuan Fondasi",
+        packageDesc: "Jawab minimal 2 dari 3 soal dengan benar (≥67%) untuk mengonfirmasi penguasaan level ini.",
+        bypassBtn: "Menyerah / Lompati Level Ini",
+        chooseQuestion: "Pilih Soal dalam Blok:"
+      },
+      question: {
+        questionOf: "Soal {current} dari {total}",
+        hintPrefix: "Petunjuk:",
+        honestyOptionTitle: "Saya Belum Mempelajari Ini / Tidak Tahu",
+        honestyOptionDesc: "Mencegah tebakan acak agar sistem mendeteksi fondasi materi yang sesungguhnya.",
+        honestyOptionSelected: "Dipilih",
+        honestyOptionSelect: "Pilih Opsi Ini"
+      },
+      nav: {
+        prevBtn: "Soal Sebelumnya",
+        nextBtn: "Soal Berikutnya",
+        finishBlockBtn: "Selesaikan Blok ({answered}/3 Terisi)",
+        loadingPackage: "Memuat paket soal..."
+      },
+      modals: {
+        bypass: {
+          title: "Lompati Blok {level} {subtopic}?",
+          descPart1: "Memilih tombol ini akan menandai blok 3 soal level ",
+          descPart2: " saat ini belum dikuasai, dan sistem adaptif akan langsung membimbingmu ke tingkat jenjang sebelumnya tanpa perlu menebak sisa soal.",
+          keepTryingBtn: "Tetap Kerjakan",
+          skipBtn: "Ya, Lompati Level"
+        },
+        submit: {
+          title: "Evaluasi Blok Soal Ini?",
+          descPart1: "Kamu telah mengisi ",
+          descPart2: " dari 3 soal pada level ",
+          descPart3: ". Sistem akan mengevaluasi apakah kamu mencapai ambang batas kelulusan (≥ 2 soal benar).",
+          checkAgainBtn: "Cek Jawaban Lagi",
+          submitBtn: "Kirim & Evaluasi"
+        }
+      },
+      levels: {
+        smaLabel: "Level SMA (Puncak)",
+        smaTag: "Tingkat Standar SMA",
+        smpLabel: "Level SMP (Jembatan Konseptual)",
+        smpTag: "Penelusuran Akar Masalah SMP",
+        sdLabel: "Level SD (Fondasi Awal)",
+        sdTag: "Fondasi Paling Mula SD"
+      }
+    }
+  },
+  settingsPage: {
+    title: "Pengaturan Akun",
+    crop: {
+      title: "Sesuaikan Foto",
+      zoom: "Zoom",
+      cancel: "Batal",
+      apply: "Terapkan",
+      error: "Gagal memotong gambar."
+    },
+    profile: {
+      title: "Profil & Identitas",
+      photo: "Foto Profil",
+      photoFormat: "Format JPG/PNG maksimal 1MB.",
+      photoSizeError: "Ukuran file maksimal 2MB!",
+      removePhoto: "Hapus Foto",
+      firstName: "Nama Depan",
+      lastName: "Nama Belakang",
+      username: "Username",
+      usernameHint: "(Tampil di peringkat)",
+      saveBtn: "Simpan Profil",
+      successMsg: "Profil berhasil diperbarui!"
+    },
+    security: {
+      title: "Keamanan & Sandi",
+      oldPass: "Sandi Lama",
+      newPass: "Sandi Baru",
+      confirmPass: "Konfirmasi Sandi Baru",
+      changeBtn: "Ganti Sandi",
+      forgotPass: "Lupa Sandi Lama?",
+      resetSent: "Link reset sandi telah dikirim ke email Anda!",
+      errorMismatch: "Konfirmasi sandi baru tidak cocok.",
+      successMsg: "Kata sandi berhasil diubah!",
+      errorDefault: "Terjadi kesalahan"
+    },
+    admin: {
+      back: "← Kembali ke Dashboard Admin"
+    }
+  },
+  resultPage: {
+    emptyState: {
+      title: "Belum Ada Data Diagnostik",
+      description: "Silakan ikuti tes diagnostik adaptif terlebih dahulu, atau muat data simulasi siswa untuk melihat tampilan laporan ini.",
+      startBtn: "Mulai Tes Diagnostik",
+      loadSampleBtn: "Muat Contoh Hasil Simulasi Siswa"
     }
   }
 };

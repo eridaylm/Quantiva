@@ -13,7 +13,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function RecommendedTests() {
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   return (
     <div className="mt-8">
       <div className="mb-5 flex items-end justify-between">

@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/language-context";
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
 
   const menuItems = [
     { label: dict.dashboard.sidebar.home, href: "/dashboard", icon: Home },

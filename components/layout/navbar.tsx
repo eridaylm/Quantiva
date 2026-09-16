@@ -2,7 +2,7 @@
 // components/layout/navbar.tsx
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ChevronDown, User as UserIcon, LogOut } from "lucide-react";
+import { Menu, X, ChevronDown, User as UserIcon, LogOut, LayoutDashboard } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "../theme-toggle";
 import { useLanguage } from "@/contexts/language-context";
@@ -96,7 +96,7 @@ export default function Navbar() {
                       onClick={() => setProfileOpen(false)}
                       className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800 transition"
                     >
-                      <UserIcon className="h-4 w-4" />
+                      <LayoutDashboard className="h-4 w-4" />
                       Dashboard
                     </Link>
                     <Link 

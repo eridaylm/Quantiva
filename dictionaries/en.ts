@@ -345,6 +345,199 @@ export const en: Dictionary = {
         levelSmaAdvanced: "Advanced (High School)",
         levelSd: "Basic (Elementary)"
       }
+    },
+    weeklyChart: {
+      title: "Weekly Progress",
+      subtitle: "Number of questions you completed",
+      score: "Score",
+      target: "Target",
+      completed: "Questions Completed",
+      days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    },
+    badgesList: [
+      { title: "Fast Thinker", desc: "Complete test < 15 mins" },
+      { title: "7-Day Streak", desc: "Study 7 days in a row" },
+      { title: "Top 10%", desc: "Top 10% this week" },
+      { title: "Problem Solver", desc: "Complete 50 practice questions" }
+    ],
+    learningTargetsList: [
+      "Complete 3 tests this week",
+      "Improve Algebra score to 800",
+      "Complete 100 practice questions"
+    ],
+    bottomBanner: {
+      title: "You are amazing! 💪",
+      subtitle: "Keep up the consistency and achieve your learning goals. We are ready to help you at any time.",
+      btnText: "Start Test Now"
+    }
+  },
+  leaderboardPage: {
+    hero: {
+      badge: "Adaptive Math Hall of Fame",
+      title: "Sub-Topic Leaderboard",
+      description: "List of the top 10 fastest and most accurate participants who completed the foundation assessment in each math domain.",
+      cta: "Test Your Skills Now"
+    },
+    metrics: {
+      rank1: "Rank 1",
+      time: "Completion Time",
+      avgTime: "Top 10 Average Time",
+      avgDesc: "High-level reasoning efficiency",
+      totalParticipants: "Total Verified Participants",
+      totalDesc: "Recorded in the official leaderboard",
+      students: "Students"
+    },
+    filter: {
+      searchPlaceholder: "Search for student or school name..."
+    },
+    table: {
+      rank: "Rank",
+      name: "Student Name",
+      level: "Education Level",
+      mastery: "Mastery Level",
+      time: "Time",
+      date: "Date",
+      empty: "No matching participants found.",
+      footerPrefix: "Showing Top 10 Participants for",
+      footerVerified: "All recorded times are verified by the Adaptive Timer"
+    },
+    badges: {
+      champ1: "1st Place",
+      champ2: "2nd Place",
+      champ3: "3rd Place"
+    },
+    mastery: {
+      sma: "High School Mastered",
+      smp: "Junior High Foundational",
+      sd: "Elementary Foundational"
+    }
+  },
+  testPage: {
+    onboarding: {
+      title: "Adaptive Math Diagnostic Test",
+      description: "Discover the true foundation of your math understanding without fear or judgment.",
+      cards: {
+        block3: {
+          title: "Adaptive 3-Question Block",
+          desc: "Starts with High School questions. If you struggle, the system automatically finds conceptual bridges at Middle or Elementary levels."
+        },
+        honestyBtn: {
+          title: "Honesty Button",
+          desc: 'Features an "I Don\'t Know" option so you don\'t have to guess. Your integrity is highly valued!'
+        },
+        skipLevel: {
+          title: "Skip Level",
+          desc: "If High School material has never been taught in your school, you can skip directly to the basic level without penalty."
+        }
+      },
+      form: {
+        nameLabel: "Student / Participant Name",
+        namePlaceholder: "Enter your full name...",
+        startBtn: "Start Diagnostic Test Now"
+      },
+      demo: {
+        prefix: "For Quick Demonstration Needs:",
+        linkText: "View Live Diagnostic Result Dashboard Example"
+      }
+    },
+    engine: {
+      tracker: {
+        participant: "Participant:",
+        honestyTested: "Honesty Tested:",
+        subTopicOf: "Sub-Topic"
+      },
+      header: {
+        subtopicLabel: "Sub-Topic:",
+        packageTitle: "Foundation Determination 3-Question Package",
+        packageDesc: "Answer at least 2 out of 3 questions correctly (≥67%) to confirm mastery of this level.",
+        bypassBtn: "Give Up / Skip This Level",
+        chooseQuestion: "Choose Question in Block:"
+      },
+      question: {
+        questionOf: "Question {current} of {total}",
+        hintPrefix: "Hint:",
+        honestyOptionTitle: "I Haven't Studied This / I Don't Know",
+        honestyOptionDesc: "Prevents random guessing so the system detects your true foundational mastery.",
+        honestyOptionSelected: "Selected",
+        honestyOptionSelect: "Select This Option"
+      },
+      nav: {
+        prevBtn: "Previous Question",
+        nextBtn: "Next Question",
+        finishBlockBtn: "Finish Block ({answered}/3 Filled)",
+        loadingPackage: "Loading question package..."
+      },
+      modals: {
+        bypass: {
+          title: "Skip Block {level} {subtopic}?",
+          descPart1: "Selecting this button will mark the current level ",
+          descPart2: " 3-question block as unmastered, and the adaptive system will immediately guide you to the previous education level without needing to guess the remaining questions.",
+          keepTryingBtn: "Keep Trying",
+          skipBtn: "Yes, Skip Level"
+        },
+        submit: {
+          title: "Evaluate This Question Block?",
+          descPart1: "You have filled ",
+          descPart2: " out of 3 questions at level ",
+          descPart3: ". The system will evaluate if you reached the passing threshold (≥ 2 correct questions).",
+          checkAgainBtn: "Check Answers Again",
+          submitBtn: "Submit & Evaluate"
+        }
+      },
+      levels: {
+        smaLabel: "High School Level (Peak)",
+        smaTag: "Standard High School Level",
+        smpLabel: "Middle School Level (Conceptual Bridge)",
+        smpTag: "Middle School Root Problem Tracing",
+        sdLabel: "Elementary Level (Early Foundation)",
+        sdTag: "Earliest Elementary Foundation"
+      }
+    }
+  },
+  settingsPage: {
+    title: "Account Settings",
+    crop: {
+      title: "Adjust Photo",
+      zoom: "Zoom",
+      cancel: "Cancel",
+      apply: "Apply",
+      error: "Failed to crop image."
+    },
+    profile: {
+      title: "Profile & Identity",
+      photo: "Profile Photo",
+      photoFormat: "JPG/PNG format up to 1MB.",
+      photoSizeError: "Max file size is 2MB!",
+      removePhoto: "Remove Photo",
+      firstName: "First Name",
+      lastName: "Last Name",
+      username: "Username",
+      usernameHint: "(Visible on leaderboard)",
+      saveBtn: "Save Profile",
+      successMsg: "Profile updated successfully!"
+    },
+    security: {
+      title: "Security & Password",
+      oldPass: "Old Password",
+      newPass: "New Password",
+      confirmPass: "Confirm New Password",
+      changeBtn: "Change Password",
+      forgotPass: "Forgot Old Password?",
+      resetSent: "Password reset link sent to your email!",
+      errorMismatch: "New passwords do not match.",
+      successMsg: "Password changed successfully!",
+      errorDefault: "An error occurred"
+    },
+    admin: {
+      back: "← Back to Admin Dashboard"
+    }
+  },
+  resultPage: {
+    emptyState: {
+      title: "No Diagnostic Data Yet",
+      description: "Please take the adaptive diagnostic test first, or load student simulation data to view this report layout.",
+      startBtn: "Start Diagnostic Test",
+      loadSampleBtn: "Load Student Simulation Sample"
     }
   }
 };

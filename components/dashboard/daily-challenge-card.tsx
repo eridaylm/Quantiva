@@ -1,20 +1,20 @@
 "use client";
 
 // components/dashboard/daily-challenge-card.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Clock, Rocket } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 export default function DailyChallengeCard() {
-  const { dict } = useLanguage();
+  const { t: dict } = useLanguage();
   const [timeLeft, setTimeLeft] = useState("00:00:00");
   
   // Create challenge objects mapped to dictionary
-  const challenges = dict.dashboard.dailyChallenge.challenges.map((desc, idx) => ({
+  const challenges = useMemo(() => dict.dashboard.dailyChallenge.challenges.map((desc, idx) => ({
     desc,
     target: [15, 1, 3, 20, 2][idx],
     points: [50, 100, 75, 150, 40][idx],
-  }));
+  })), [dict.dashboard.dailyChallenge.challenges]);
   
   const [challenge, setChallenge] = useState(challenges[0]);
 

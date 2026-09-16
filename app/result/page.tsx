@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
+import { useLanguage } from '@/contexts/language-context';
 import { useTest } from '@/context/TestContext';
 import { SubTopic, SubTopicResult, MasteryStatus } from '@/types';
 import { SUBTOPICS_SEQUENCE } from '@/data/mockData';
@@ -33,6 +34,7 @@ import Link from 'next/link';
 
 export default function ResultPage() {
   const router = useRouter();
+  const { t: dict } = useLanguage();
   const { latestResult, loadSampleResult, resetTest } = useTest();
   const [expandedTopic, setExpandedTopic] = useState<SubTopic | null>(null);
 
@@ -100,23 +102,23 @@ export default function ResultPage() {
               <BrainCircuit className="h-7 w-7" />
             </div>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-              Belum Ada Data Diagnostik
+              {dict.resultPage.emptyState.title}
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              Silakan ikuti tes diagnostik adaptif terlebih dahulu, atau muat data simulasi siswa untuk melihat tampilan laporan ini.
+              {dict.resultPage.emptyState.description}
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
               <Link
                 href="/test"
                 className="w-full rounded-xl bg-blue-600 py-2.5 px-4 text-xs font-bold text-white shadow-sm hover:bg-blue-700 transition"
               >
-                Mulai Tes Diagnostik
+                {dict.resultPage.emptyState.startBtn}
               </Link>
               <button
                 onClick={loadSampleResult}
                 className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-4 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 transition"
               >
-                Muat Contoh Hasil Simulasi Siswa
+                {dict.resultPage.emptyState.loadSampleBtn}
               </button>
             </div>
           </div>
