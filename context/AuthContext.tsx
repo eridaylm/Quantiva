@@ -19,6 +19,7 @@ interface AuthContextType {
   changePassword: (oldPass: string, newPass: string) => { success: boolean; error?: string };
   authError: string | null;
   setAuthError: (err: string | null) => void;
+  completeTest: (testDate?: Date) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -171,6 +172,49 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return { success: true };
   };
 
+  const completeTest = (testDate: Date = new Date()) => {
+    if (!user) return;
+
+    let currentStreak = user.streakDays || 0;
+    const lastDateStr = user.lastTestDate;
+    
+    if (lastDateStr) {
+      const lastDate = new Date(lastDateStr);
+      
+      const isSameDay = testDate.getDate() === lastDate.getDate() && testDate.getMonth() === lastDate.getMonth() && testDate.getFullYear() === lastDate.getFullYear();
+      
+      const yesterday = new Date(testDate);
+      yesterday.setDate(testDate.getDate() - 1);
+      const isYesterday = yesterday.getDate() === lastDate.getDate() && yesterday.getMonth() === lastDate.getMonth() && yesterday.getFullYear() === lastDate.getFullYear();
+      
+      if (isSameDay) {
+        // already completed a test today, no streak increment
+      } else if (isYesterday) {
+        currentStreak += 1;
+      } else {
+        // missed a day, reset streak to 1
+        currentStreak = 1;
+      }
+    } else {
+      // First test ever
+      currentStreak = 1;
+    }
+
+    const updatedUser = { 
+      ...user, 
+      streakDays: currentStreak, 
+      lastTestDate: testDate.toISOString() 
+    };
+    
+    setUser(updatedUser);
+    try {
+      localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(updatedUser));
+    } catch (e) {
+      console.error(e);
+    }
+    updateUser(updatedUser);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -188,6 +232,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         changePassword,
         authError,
         setAuthError,
+        completeTest,
       }}
     >
       {children}

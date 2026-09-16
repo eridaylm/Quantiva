@@ -118,21 +118,59 @@ export const id = {
     description: "Mulai perjalananmu bersama ReMath sekarang juga dan temukan kemampuan matematika terbaikmu.",
     startBtn: "Mulai Tes Sekarang",
   },
+  faq: {
+    title: "Pertanyaan yang Sering Diajukan",
+    description: "Temukan jawaban atas pertanyaan umum seputar platform ReMath.",
+    questions: [
+      {
+        q: "Apa itu ReMath?",
+        a: "ReMath adalah platform tes diagnostik matematika pintar yang dirancang untuk mengukur, menganalisis, dan memetakan potensi kemampuan matematika Anda secara akurat."
+      },
+      {
+        q: "Apakah tes di ReMath berbayar?",
+        a: "Saat ini, seluruh fitur dasar dan tes di ReMath dapat diakses sepenuhnya secara gratis untuk membantu pendidikan matematika di Indonesia."
+      },
+      {
+        q: "Bagaimana sistem tes adaptif bekerja?",
+        a: "Sistem kami menggunakan algoritma khusus yang akan menyesuaikan tingkat kesulitan soal berikutnya berdasarkan jawaban Anda sebelumnya (benar atau salah)."
+      },
+      {
+        q: "Apakah ada batas waktu saat mengerjakan tes?",
+        a: "Ya, setiap tes memiliki batas waktu yang bervariasi tergantung pada jumlah soal dan tingkat kesulitan untuk melatih manajemen waktu Anda."
+      },
+      {
+        q: "Bisakah saya mengulang tes yang sudah dikerjakan?",
+        a: "Tentu! Anda dapat mengulang tes kapan saja. Kami bahkan merekomendasikannya agar Anda bisa melihat perkembangan nilai Anda."
+      },
+      {
+        q: "Bagaimana cara membaca laporan analisis tes?",
+        a: "Setelah selesai tes, buka menu Dashboard atau Analisis. Anda akan melihat grafik kekuatan dan kelemahan di setiap topik (misalnya Aljabar, Geometri)."
+      },
+      {
+        q: "Apakah soalnya sesuai dengan kurikulum sekolah?",
+        a: "Soal-soal kami disusun mengikuti standar kompetensi dasar matematika nasional namun dirancang lebih fokus pada pemahaman konsep dan logika."
+      },
+      {
+        q: "Bagaimana cara mendapatkan peringkat global?",
+        a: "Semakin banyak tes yang Anda selesaikan dengan nilai tinggi, semakin besar XP yang Anda dapatkan. Peringkat Anda akan otomatis naik di Leaderboard."
+      }
+    ]
+  },
   footer: {
     description: "Platform cerdas untuk mengukur, menganalisis, dan mengembangkan kecerdasan matematika secara akurat dan terpercaya.",
-    productsTitle: "Produk",
+    productsTitle: "Platform",
     products: {
-      test: "Tes",
-      features: "Fitur",
+      test: "Mulai Tes",
+      features: "Cara Kerja",
       leaderboard: "Peringkat",
-      pricing: "Harga",
+      pricing: "Keunggulan",
     },
-    companyTitle: "Perusahaan",
+    companyTitle: "Dukungan",
     company: {
-      about: "Tentang Kami",
-      blog: "Blog",
-      career: "Karier",
-      contact: "Kontak",
+      about: "Pusat Bantuan",
+      blog: "FAQ",
+      career: "Panduan Pengguna",
+      contact: "Hubungi Kami",
     },
     newsletterTitle: "Dapatkan update terbaru",
     newsletterDesc: "Berlangganan newsletter ReMath.",
@@ -192,6 +230,120 @@ export const id = {
     resendIn: "Kirim ulang dalam",
     seconds: "detik",
     didntReceive: "Tidak menerima kode?",
+  },
+  dashboard: {
+    sidebar: {
+      home: "Beranda",
+      myTests: "Tes Saya",
+      analysis: "Analisis",
+      leaderboard: "Peringkat",
+      learn: "Belajar",
+      settings: "Pengaturan",
+      more: "Lainnya"
+    },
+    header: {
+      search: "Cari tes, topik, atau materi...",
+      notifications: "Notifikasi",
+      noNotifications: "Belum ada notifikasi baru.",
+      viewProfile: "Lihat Profile",
+      logout: "Logout",
+      roleAdmin: "Administrator",
+      roleUser: "Pelajar"
+    },
+    welcome: {
+      greeting: "Halo, {name}! 👋",
+      subtitle: "Semangat untuk terus berkembang hari ini! Kamu sudah selangkah lebih dekat untuk menjadi versi terbaik dirimu.",
+      streakTitle: "Streak Belajar",
+      streakDays: "hari",
+      streakSub: "berturut-turut",
+      targetTitle: "Target Mingguan",
+      targetSub: "soal",
+      streakPopupTitle: "STREAK +1!",
+      streakPopupDesc: "Luar biasa! 🔥<br/>Kamu telah belajar {days} hari berturut-turut. Pertahankan semangatmu!",
+      streakPopupBtn: "Lanjutkan Belajar"
+    },
+    statCard: {
+      mathScore: "Skor Matematikamu",
+      noTestHistory: "Belum ada riwayat tes",
+      beginner: "Pemula",
+      rank: "Peringkat Kamu",
+      completeFirstTest: "Selesaikan tes pertama",
+      accuracy: "Akurasi Jawaban",
+      learningTime: "Total Waktu Belajar"
+    },
+    badgeCard: {
+      title: "Badge Terbaru",
+      viewAll: "Lihat semua",
+      bestTest: "Tes yang Paling Kamu Jago",
+      noMathYet: "Belum Ada Matematika",
+      startTestNow: "Mulai tes sekarang"
+    },
+    dailyChallenge: {
+      title: "Challenge Harian",
+      endsIn: "Berakhir dalam",
+      get: "dan dapatkan",
+      points: "poin",
+      startChallenge: "Mulai Challenge",
+      challenges: [
+        "Kerjakan 15 soal logika hari ini",
+        "Dapatkan skor 800+ di tes Aljabar",
+        "Selesaikan 3 tes campuran",
+        "Jawab 20 soal tanpa salah",
+        "Pelajari 2 materi baru hari ini"
+      ]
+    },
+    recentTests: {
+      title: "Riwayat Tes Terakhir",
+      viewAll: "Lihat semua",
+      doAgain: "Kerjakan Lagi",
+      empty: "Belum ada riwayat tes."
+    },
+    recommendedTests: {
+      title: "Rekomendasi Tes untukmu",
+      subtitle: "Tes rekomendasi berdasarkan hasil dan perkembanganmu",
+      viewAll: "Lihat semua",
+      startBtn: "Mulai",
+      questions: "Soal"
+    },
+    strengthWeakness: {
+      title: "Topik Terkuat & Terlemah",
+      strongest: "Terkuat",
+      weakest: "Perlu Ditingkatkan",
+      viewAnalysis: "Lihat Analisis",
+      empty: "Selesaikan tes pertama untuk melihat analisis."
+    },
+    learningTarget: {
+      title: "Target Belajar",
+      subtitle: "Selesaikan targetmu dan tingkatkan kemampuanmu!",
+      viewAll: "Lihat Semua Target",
+      statusCompleted: "Selesai",
+      statusContinue: "Lanjutkan",
+      statusNew: "Baru",
+      empty: "Belum ada target pembelajaran."
+    },
+    learnPage: {
+      title: "Halo {name}, Lanjutkan Belajarmu!",
+      subtitle: "Berikut adalah rekomendasi modul belajar berdasarkan hasil tes diagnostik terakhirmu.",
+      progress: "Progress",
+      video: "Video",
+      startLearn: "Mulai Belajar",
+      locked: "Terkunci (Selesaikan tes dulu)",
+      modalTitle: "Modul Pembelajaran",
+      modalSubtitle: "Materi Video & Latihan Soal",
+      playlist: "Daftar Putar (Playlist)",
+      conceptPart: "Konsep Dasar Bagian",
+      videoMins: "menit",
+      modules: {
+        aljabar: "Aljabar",
+        geometri: "Geometri",
+        kalkulus: "Kalkulus",
+        statistika: "Statistika",
+        levelSmp: "Dasar (SMP)",
+        levelSma: "Menengah (SMA)",
+        levelSmaAdvanced: "Lanjut (SMA)",
+        levelSd: "Dasar (SD)"
+      }
+    }
   }
 };
 

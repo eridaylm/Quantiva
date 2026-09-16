@@ -111,4 +111,6 @@ export interface AppUser {
   token?: string;
   pass?: string;
   lastAccess?: string;
+  streakDays?: number;
+  lastTestDate?: string;
 }

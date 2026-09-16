@@ -120,21 +120,59 @@ export const en: Dictionary = {
     description: "Start your journey with ReMath today and find your best mathematical abilities.",
     startBtn: "Start Test Now",
   },
+  faq: {
+    title: "Frequently Asked Questions",
+    description: "Find answers to common questions about the ReMath platform.",
+    questions: [
+      {
+        q: "What is ReMath?",
+        a: "ReMath is a smart diagnostic math testing platform designed to accurately measure, analyze, and map your math potential."
+      },
+      {
+        q: "Are the tests on ReMath paid?",
+        a: "Currently, all basic features and tests on ReMath are fully accessible for free to help improve math education."
+      },
+      {
+        q: "How does the adaptive test system work?",
+        a: "Our system uses a special algorithm that will adjust the difficulty level of the next question based on your previous answer (right or wrong)."
+      },
+      {
+        q: "Is there a time limit when taking the test?",
+        a: "Yes, each test has a time limit that varies depending on the number of questions and the difficulty level to train your time management."
+      },
+      {
+        q: "Can I retake a test I have already completed?",
+        a: "Of course! You can retake the test at any time. We even recommend it so you can see your score progress."
+      },
+      {
+        q: "How do I read the test analysis report?",
+        a: "After completing the test, go to the Dashboard or Analysis menu. You will see a graph of your strengths and weaknesses in each topic."
+      },
+      {
+        q: "Are the questions according to the school curriculum?",
+        a: "Our questions are prepared following the national basic math competency standards but are designed to focus more on understanding concepts and logic."
+      },
+      {
+        q: "How do I get a global ranking?",
+        a: "The more tests you complete with high scores, the more XP you get. Your ranking will automatically go up on the Leaderboard."
+      }
+    ]
+  },
   footer: {
     description: "An intelligent platform to measure, analyze, and develop mathematical intelligence accurately and reliably.",
-    productsTitle: "Products",
+    productsTitle: "Platform",
     products: {
-      test: "Tests",
-      features: "Features",
+      test: "Start Test",
+      features: "How it Works",
       leaderboard: "Leaderboard",
-      pricing: "Pricing",
+      pricing: "Advantages",
     },
-    companyTitle: "Company",
+    companyTitle: "Support",
     company: {
-      about: "About Us",
-      blog: "Blog",
-      career: "Careers",
-      contact: "Contact",
+      about: "Help Center",
+      blog: "FAQ",
+      career: "User Guide",
+      contact: "Contact Us",
     },
     newsletterTitle: "Get the latest updates",
     newsletterDesc: "Subscribe to the ReMath newsletter.",
@@ -194,5 +232,119 @@ export const en: Dictionary = {
     resendIn: "Resend in",
     seconds: "seconds",
     didntReceive: "Didn't receive the code?",
+  },
+  dashboard: {
+    sidebar: {
+      home: "Home",
+      myTests: "My Tests",
+      analysis: "Analysis",
+      leaderboard: "Leaderboard",
+      learn: "Learn",
+      settings: "Settings",
+      more: "More"
+    },
+    header: {
+      search: "Search tests, topics, or materials...",
+      notifications: "Notifications",
+      noNotifications: "No new notifications.",
+      viewProfile: "View Profile",
+      logout: "Logout",
+      roleAdmin: "Administrator",
+      roleUser: "Student"
+    },
+    welcome: {
+      greeting: "Hello, {name}! 👋",
+      subtitle: "Keep up the spirit to grow today! You're one step closer to becoming the best version of yourself.",
+      streakTitle: "Learning Streak",
+      streakDays: "days",
+      streakSub: "in a row",
+      targetTitle: "Weekly Target",
+      targetSub: "questions",
+      streakPopupTitle: "STREAK +1!",
+      streakPopupDesc: "Awesome! 🔥<br/>You have studied for {days} days in a row. Keep it up!",
+      streakPopupBtn: "Continue Learning"
+    },
+    statCard: {
+      mathScore: "Math Score",
+      noTestHistory: "No test history yet",
+      beginner: "Beginner",
+      rank: "Your Rank",
+      completeFirstTest: "Complete your first test",
+      accuracy: "Answer Accuracy",
+      learningTime: "Total Learning Time"
+    },
+    badgeCard: {
+      title: "Latest Badges",
+      viewAll: "View all",
+      bestTest: "Your Best Subject",
+      noMathYet: "No Math Yet",
+      startTestNow: "Start a test now"
+    },
+    dailyChallenge: {
+      title: "Daily Challenge",
+      endsIn: "Ends in",
+      get: "and get",
+      points: "points",
+      startChallenge: "Start Challenge",
+      challenges: [
+        "Complete 15 logic questions today",
+        "Get a score of 800+ in Algebra",
+        "Complete 3 mixed tests",
+        "Answer 20 questions without mistakes",
+        "Learn 2 new topics today"
+      ]
+    },
+    recentTests: {
+      title: "Recent Test History",
+      viewAll: "View all",
+      doAgain: "Retake",
+      empty: "No test history yet."
+    },
+    recommendedTests: {
+      title: "Recommended Tests for You",
+      subtitle: "Recommended tests based on your results and progress",
+      viewAll: "View all",
+      startBtn: "Start",
+      questions: "Q's"
+    },
+    strengthWeakness: {
+      title: "Strongest & Weakest Topics",
+      strongest: "Strongest",
+      weakest: "Needs Improvement",
+      viewAnalysis: "View Analysis",
+      empty: "Complete your first test to see the analysis."
+    },
+    learningTarget: {
+      title: "Learning Targets",
+      subtitle: "Complete your targets and improve your skills!",
+      viewAll: "View All Targets",
+      statusCompleted: "Completed",
+      statusContinue: "Continue",
+      statusNew: "New",
+      empty: "No learning targets yet."
+    },
+    learnPage: {
+      title: "Hello {name}, Continue Learning!",
+      subtitle: "Here are the recommended learning modules based on your latest diagnostic test results.",
+      progress: "Progress",
+      video: "Videos",
+      startLearn: "Start Learning",
+      locked: "Locked (Finish test first)",
+      modalTitle: "Learning Module",
+      modalSubtitle: "Video Materials & Exercises",
+      playlist: "Playlist",
+      conceptPart: "Basic Concepts Part",
+      videoMins: "minutes",
+      modules: {
+        aljabar: "Algebra",
+        geometri: "Geometry",
+        kalkulus: "Calculus",
+        statistika: "Statistics",
+        levelSmp: "Basic (Junior High)",
+        levelSma: "Intermediate (High School)",
+        levelSmaAdvanced: "Advanced (High School)",
+        levelSd: "Basic (Elementary)"
+      }
+    }
   }
 };

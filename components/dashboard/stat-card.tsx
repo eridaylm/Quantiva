@@ -4,6 +4,7 @@
 import { useEffect, useRef } from "react";
 import { DashboardStat } from "@/types/dashboard";
 import { BrainCircuit, Award, Info, Star } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 function MiniChart({ data, type }: { data: number[], type: "score" | "rank" }) {
   const chartRef = useRef<HTMLDivElement | null>(null);
@@ -148,28 +149,32 @@ function MiniChart({ data, type }: { data: number[], type: "score" | "rank" }) {
 }
 
 export default function StatCard(stat: DashboardStat) {
+  const { dict } = useLanguage();
+
   if (stat.type === "best") {
     return (
-      <div className="relative overflow-hidden rounded-[24px] border border-orange-100 bg-[#fffdf5] p-6 h-[280px]">
+      <div className="relative overflow-hidden rounded-[24px] border border-orange-100 dark:border-orange-900/50 bg-[#fffdf5] dark:bg-orange-950/20 p-6 h-[280px]">
         <div className="z-10 relative">
           <div className="flex justify-between items-start">
-            <h3 className="text-[13px] font-bold text-slate-800">{stat.title}</h3>
-            <div className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-orange-200 bg-white shadow-sm">
+            <h3 className="text-[13px] font-bold text-slate-800 dark:text-slate-200">{dict.dashboard.badgeCard.bestTest}</h3>
+            <div className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-orange-200 dark:border-orange-800 bg-white dark:bg-slate-800 shadow-sm">
                <Star className="h-5 w-5 text-orange-400" />
             </div>
           </div>
-          <h2 className="mt-0.5 text-[28px] font-semibold text-slate-900 leading-tight w-2/3 relative z-10">
-            {stat.value.replace(" Matematika", "")}<br />Matematika
+          <h2 className="mt-0.5 text-[28px] font-semibold text-slate-900 dark:text-white leading-tight w-2/3 relative z-10">
+            {stat.value === "Belum Ada" ? dict.dashboard.badgeCard.noMathYet : stat.value}
           </h2>
           <div className="mt-4 flex flex-col items-start gap-1 relative z-10">
-            <div className="inline-flex items-center rounded-lg bg-orange-100/60 px-3 py-1.5 text-[11px] font-bold text-orange-600">
-              Skor Tertinggi
+            <div className="inline-flex items-center rounded-lg bg-orange-100/60 dark:bg-orange-900/40 px-3 py-1.5 text-[11px] font-bold text-orange-600 dark:text-orange-400">
+              {dict.dashboard.badgeCard.startTestNow}
             </div>
-            <p className="mt-2"><span className="text-4xl font-black text-orange-500">{stat.badge?.split(" ")[2] || "910"}</span> <span className="text-sm font-bold text-slate-400">/1000</span></p>
+            {stat.value !== "Belum Ada" && (
+              <p className="mt-2"><span className="text-4xl font-black text-orange-500">{stat.badge?.split(" ")[2] || "0"}</span> <span className="text-sm font-bold text-slate-400 dark:text-slate-500">/1000</span></p>
+            )}
           </div>
         </div>
         
-        <div className="absolute -bottom-10 -right-10 h-56 w-56 z-0 flex items-center justify-center text-orange-200/60">
+        <div className="absolute -bottom-10 -right-10 h-56 w-56 z-0 flex items-center justify-center text-orange-200/60 dark:text-orange-900/30">
            <BrainCircuit className="h-full w-full" strokeWidth={1} />
         </div>
       </div>
@@ -177,40 +182,40 @@ export default function StatCard(stat: DashboardStat) {
   }
 
   const isScore = stat.type === "score";
-  const bgClass = isScore ? "bg-[#f8faff] border-indigo-100/50" : "bg-[#f4fdf6] border-emerald-100/50";
-  const titleColor = isScore ? "text-indigo-900" : "text-emerald-700";
+  const bgClass = isScore ? "bg-[#f8faff] dark:bg-indigo-950/20 border-indigo-100/50 dark:border-indigo-900/50" : "bg-[#f4fdf6] dark:bg-emerald-950/20 border-emerald-100/50 dark:border-emerald-900/50";
+  const titleColor = isScore ? "text-indigo-900 dark:text-indigo-400" : "text-emerald-700 dark:text-emerald-400";
+  
+  const displayTitle = isScore ? dict.dashboard.statCard.mathScore : dict.dashboard.statCard.rank;
+  const displayBadge = isScore ? dict.dashboard.statCard.beginner : "";
+  const displayTrend = isScore ? dict.dashboard.statCard.noTestHistory : dict.dashboard.statCard.completeFirstTest;
   
   return (
     <div className={`relative overflow-hidden rounded-[24px] border ${bgClass} p-6 shadow-sm h-[280px]`}>
       <div className="flex justify-between items-start relative z-10 w-full">
         <h3 className={`text-[13px] font-bold flex items-center gap-1.5 ${titleColor}`}>
-          {stat.title}
+          {displayTitle}
           <Info className="h-3.5 w-3.5 opacity-60" />
         </h3>
         
         {isScore ? (
-          <div className="inline-flex items-center rounded-lg bg-indigo-100/70 px-3 py-1.5 text-[11px] font-bold text-indigo-600">
-            {stat.badge}
+          <div className="inline-flex items-center rounded-lg bg-indigo-100/70 dark:bg-indigo-900/40 px-3 py-1.5 text-[11px] font-bold text-indigo-600 dark:text-indigo-400">
+            {displayBadge}
           </div>
         ) : (
-          <div className={`flex h-9 w-9 items-center justify-center rounded-[10px] bg-white shadow-sm border border-emerald-100`}>
+          <div className={`flex h-9 w-9 items-center justify-center rounded-[10px] bg-white dark:bg-slate-800 shadow-sm border border-emerald-100 dark:border-emerald-800`}>
             <Award className="h-5 w-5 text-emerald-500" />
           </div>
         )}
       </div>
       
       <div className="mt-0.5 relative z-10">
-        <p className={`text-[42px] font-semibold text-slate-900 tracking-tight leading-none flex items-baseline gap-1`}>
+        <p className={`text-[42px] font-semibold text-slate-900 dark:text-white tracking-tight leading-none flex items-baseline gap-1`}>
           {stat.value.replace("/1000", "")}
-          {isScore && <span className="text-[15px] font-bold text-slate-500">/1000</span>}
+          {isScore && <span className="text-[15px] font-bold text-slate-500 dark:text-slate-400">/1000</span>}
         </p>
         
         <div className="mt-2 text-[11px] font-bold">
-          {isScore ? (
-             <p><span className="text-emerald-500">+46 poin</span> <span className="text-slate-500">dari tes sebelumnya</span></p>
-          ) : (
-             <p className="text-slate-500">dari 50.000+ pengguna</p>
-          )}
+          <p className="text-slate-500 dark:text-slate-400">{displayTrend}</p>
         </div>
       </div>
 

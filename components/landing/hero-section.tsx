@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/language-context";
+import { useAuth } from "@/context/AuthContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,6 +28,42 @@ const itemVariants = {
 
 export default function HeroSection() {
   const { t } = useLanguage();
+  const { allUsers } = useAuth();
+  
+  // Ambil maksimal 4 user (role 'user')
+  const registeredUsers = allUsers?.filter(u => u.role === 'user').slice(0, 4) || [];
+  const defaultInitials = ["A", "R", "D", "S"];
+  
+  // Siapkan 4 slot. Isi dengan data user (jika ada), sisanya pakai default initials
+  const displayAvatars = Array.from({ length: 4 }).map((_, i) => {
+    const user = registeredUsers[i];
+    if (user) {
+      let initial = "";
+      const isDefaultUsername = !user.username || user.username.endsWith('_user') || user.username.endsWith('_admin');
+      
+      if (isDefaultUsername && user.name) {
+         initial = user.name.charAt(0).toUpperCase();
+      } else if (user.username) {
+         initial = user.username.charAt(0).toUpperCase();
+      } else {
+         initial = "U";
+      }
+
+      return {
+        id: user.id || `u-${i}`,
+        hasAvatar: !!user.avatarUrl,
+        url: user.avatarUrl,
+        initial,
+      };
+    }
+    
+    return {
+      id: `default-${i}`,
+      hasAvatar: false,
+      url: null,
+      initial: defaultInitials[i],
+    };
+  });
 
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.12),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(99,102,241,0.12),_transparent_35%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.05),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(99,102,241,0.05),_transparent_35%)]">
@@ -61,7 +98,7 @@ export default function HeroSection() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="#cara-kerja"
+            href="/#cara-kerja"
             className="rounded-md border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             {t.hero.exploreBtn}
@@ -70,13 +107,22 @@ export default function HeroSection() {
 
         <motion.div variants={itemVariants} className="mt-12 flex flex-col items-center gap-4">
           <div className="flex -space-x-3">
-            {["A", "R", "D", "S"].map((item) => (
-              <div
-                key={item}
-                className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-white dark:border-slate-950 bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-bold text-white shadow"
-              >
-                {item}
-              </div>
+            {displayAvatars.map((item) => (
+              item.hasAvatar ? (
+                <div
+                  key={item.id}
+                  className="relative flex h-11 w-11 items-center justify-center rounded-full border-2 border-white dark:border-slate-950 bg-slate-200 dark:bg-slate-800 overflow-hidden shadow"
+                >
+                  <img src={item.url!} alt="User avatar" className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <div
+                  key={item.id}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-white dark:border-slate-950 bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-bold text-white shadow"
+                >
+                  {item.initial}
+                </div>
+              )
             ))}
           </div>
           <p className="text-sm text-slate-600 dark:text-slate-400">

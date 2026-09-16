@@ -29,19 +29,17 @@ export default function Footer() {
           <h3 className="font-semibold text-slate-900 dark:text-white">{t.footer.productsTitle}</h3>
           <ul className="mt-4 space-y-3 text-sm text-slate-500 dark:text-slate-400">
             <li><Link href="/tes" className="hover:text-blue-600 transition">{t.footer.products.test}</Link></li>
-            <li><Link href="#fitur" className="hover:text-blue-600 transition">{t.footer.products.features}</Link></li>
+            <li><Link href="/#cara-kerja" className="hover:text-blue-600 transition">{t.footer.products.features}</Link></li>
             <li><Link href="/peringkat" className="hover:text-blue-600 transition">{t.footer.products.leaderboard}</Link></li>
-            <li><Link href="#" className="hover:text-blue-600 transition">{t.footer.products.pricing}</Link></li>
+            <li><Link href="/#fitur" className="hover:text-blue-600 transition">{t.footer.products.pricing}</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-semibold text-slate-900 dark:text-white">{t.footer.companyTitle}</h3>
           <ul className="mt-4 space-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <li><Link href="#tentang" className="hover:text-blue-600 transition">{t.footer.company.about}</Link></li>
-            <li><Link href="#" className="hover:text-blue-600 transition">{t.footer.company.blog}</Link></li>
-            <li><Link href="#" className="hover:text-blue-600 transition">{t.footer.company.career}</Link></li>
-            <li><Link href="#" className="hover:text-blue-600 transition">{t.footer.company.contact}</Link></li>
+            <li><Link href="/#faq" className="hover:text-blue-600 transition">{t.footer.company.blog}</Link></li>
+            <li><Link href="/contact-us" className="hover:text-blue-600 transition">{t.footer.company.contact}</Link></li>
           </ul>
         </div>
 

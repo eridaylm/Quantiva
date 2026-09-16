@@ -105,6 +105,15 @@ export default function AdminUsersPage() {
     }
   };
 
+  const getInitials = (u: AppUser) => {
+    const isDefault = !u.username || u.username.endsWith('_user') || u.username.endsWith('_admin');
+    if (isDefault) {
+      const first = u.firstName || (u.name ? u.name.split(' ')[0] : '?');
+      return first.substring(0, 1).toUpperCase();
+    }
+    return u.username.substring(0, 1).toUpperCase();
+  };
+
   return (
     <AdminGuard>
       <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950">
@@ -226,7 +235,21 @@ export default function AdminUsersPage() {
                         return (
                           <tr key={u.email} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition">
                             <td className="py-3 px-4 font-bold text-slate-900 dark:text-white">
-                              {u.name}
+                              <div className="flex items-center gap-3">
+                                <div className="h-8 w-8 overflow-hidden rounded-full border border-slate-200 bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 dark:border-slate-700 dark:bg-blue-900/40 dark:text-blue-300">
+                                  {u.avatarUrl ? (
+                                    <img src={u.avatarUrl} alt="Avatar" className="h-full w-full object-cover" />
+                                  ) : (
+                                    <span className="text-xs font-bold">
+                                      {getInitials(u)}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="flex flex-col">
+                                  <span>{u.name}</span>
+                                  {u.username && <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500">@{u.username}</span>}
+                                </div>
+                              </div>
                             </td>
                             <td className="py-3 px-4 text-slate-500 dark:text-slate-400">
                               {u.email}
@@ -243,7 +266,7 @@ export default function AdminUsersPage() {
                               )}
                             </td>
                             <td className="py-3 px-4 text-center font-mono">
-                              {u.pass || '***'}
+                              <span className="text-slate-400">••••••••</span>
                             </td>
                             <td className="py-3 px-4">
                               <div className="flex items-center gap-1.5">

@@ -7,6 +7,7 @@ import StatsSection from "@/components/landing/stats-section";
 import HowItWorks from "@/components/landing/how-it-works";
 import PopularTests from "@/components/landing/popular-tests";
 import TestimonialSection from "@/components/landing/testimonial-section";
+import FaqSection from "@/components/landing/faq-section";
 import CtaSection from "@/components/landing/cta-section";
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
       <HowItWorks />
       <PopularTests />
       <TestimonialSection />
+      <FaqSection />
       <CtaSection />
       <Footer />
     </main>

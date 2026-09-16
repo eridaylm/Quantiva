@@ -4,27 +4,28 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, ClipboardList, PieChart, Trophy, BookOpen, Settings, Crown } from "lucide-react";
-
-const menuItems = [
-  { label: "Beranda", href: "/dashboard", icon: Home },
-  { label: "Tes Saya", href: "/tes", icon: ClipboardList },
-  { label: "Analisis", href: "/analisis", icon: PieChart },
-  { label: "Peringkat", href: "/peringkat", icon: Trophy },
-  { label: "Belajar", href: "/belajar", icon: BookOpen },
-  { label: "Pengaturan", href: "/pengaturan", icon: Settings },
-];
-
-// Items for mobile bottom nav (max 5)
-const bottomNavItems = [
-  { label: "Beranda", href: "/dashboard", icon: Home },
-  { label: "Tes", href: "/tes", icon: ClipboardList },
-  { label: "Analisis", href: "/analisis", icon: PieChart },
-  { label: "Peringkat", href: "/peringkat", icon: Trophy },
-  { label: "Lainnya", href: "/pengaturan", icon: Settings },
-];
+import { useLanguage } from "@/contexts/language-context";
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
+  const { dict } = useLanguage();
+
+  const menuItems = [
+    { label: dict.dashboard.sidebar.home, href: "/dashboard", icon: Home },
+    { label: dict.dashboard.sidebar.myTests, href: "/tes", icon: ClipboardList },
+    { label: dict.dashboard.sidebar.analysis, href: "/analisis", icon: PieChart },
+    { label: dict.dashboard.sidebar.leaderboard, href: "/peringkat", icon: Trophy },
+    { label: dict.dashboard.sidebar.learn, href: "/belajar", icon: BookOpen },
+    { label: dict.dashboard.sidebar.settings, href: "/pengaturan", icon: Settings },
+  ];
+
+  const bottomNavItems = [
+    { label: dict.dashboard.sidebar.home, href: "/dashboard", icon: Home },
+    { label: dict.dashboard.sidebar.myTests, href: "/tes", icon: ClipboardList },
+    { label: dict.dashboard.sidebar.analysis, href: "/analisis", icon: PieChart },
+    { label: dict.dashboard.sidebar.leaderboard, href: "/peringkat", icon: Trophy },
+    { label: dict.dashboard.sidebar.more, href: "/pengaturan", icon: Settings },
+  ];
 
   return (
     <>
